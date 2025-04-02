@@ -1,6 +1,10 @@
 # Dash Demos
 
-This repo is for code that supports talks, blogs, and experiments. **This code is unmaintained.** 
+This repo is for code that supports talks, blogs, and experiments. 
+
+**NOTE: This code is provided for demonstration purposes only. 
+The code is unmaintained, and may not work with newer releases.
+Demos may get removed when they are no longer in focus.** 
 
 ## CI
 
