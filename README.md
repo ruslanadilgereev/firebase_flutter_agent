@@ -1,10 +1,12 @@
 # Dash Demos
 
-This repo is for code that supports talks, blogs, and experiments. **This code is unmaintained.**
+This repo is for code that supports talks, blogs, and experiments. **This code is unmaintained.** 
 
 ## Contributing
 
-If you're on the Dash team at Google, this repo is appropriate for **any** demo, sample, experiment, etc that you don't want to commit to maintaining. For example:
+If you're on the Dash team at Google, this repo is appropriate for **any** demo, sample, experiment, etc that you don't want to commit to maintaining. This repository is a catch-all for code that just doesn't belong anywhere else.
+
+For example:
 
 - Demos for talks, events, workshops, or tied to a timeline in some way.
 - Sample apps that are in-progress.
