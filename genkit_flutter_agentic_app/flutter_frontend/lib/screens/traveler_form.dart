@@ -92,29 +92,31 @@ class _TravelerFormScreenState extends State<TravelerFormScreen> {
     }
 
     return Scaffold(
+      appBar: AppBar(title: MyPackingListTitle(), centerTitle: true),
       body: Padding(
         padding: EdgeInsets.all(Spacing.l),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MyPackingListTitle(),
-            Padding(
-              padding: EdgeInsets.all(Spacing.l),
-              child: Form(
-                child: Column(
-                  children: [
-                    LocationInput(controller: _locationController),
-                    SizedBox.square(dimension: Spacing.xl),
-                    TripLengthInput(controller: _lengthOfStayController),
-                    SizedBox.square(dimension: Spacing.xl),
-                    PreferencesInput(controller: _preferencesController),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(Spacing.l),
+                child: Form(
+                  child: Column(
+                    children: [
+                      LocationInput(controller: _locationController),
+                      SizedBox.square(dimension: Spacing.xl),
+                      TripLengthInput(controller: _lengthOfStayController),
+                      SizedBox.square(dimension: Spacing.xl),
+                      PreferencesInput(controller: _preferencesController),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox.square(dimension: Spacing.l),
-            GetPackingListButton(onPressed: () => getPackingList(context)),
-          ],
+              SizedBox.square(dimension: Spacing.l),
+              GetPackingListButton(onPressed: () => getPackingList(context)),
+            ],
+          ),
         ),
       ),
     );
