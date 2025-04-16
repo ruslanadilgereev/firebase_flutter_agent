@@ -114,12 +114,12 @@ this to display the order confirmation screen.
 #### Tools
 There are 4 tools included in the Genkit & Flutter starter kit. Each tool is 
 entirely modular, you can modify these however you see fit for each use case:
-`GetLatLong`: Takes the location string, such as "Honolulu" and calls a 
+- `GetLatLong`: Takes the location string, such as "Honolulu" and calls a 
 geocoding API to get precise latitude and longitude
-`GetWeather`: Takes location coordinates (from GetLatLong) and calls a weather 
+- `GetWeather`: Takes location coordinates (from GetLatLong) and calls a weather 
 API to get the forecast ("mostly sunny... 70-80 degrees")
-`GetImage`: Use the location name to search an image API for a relevant photo.
-`ShoppingTool`: Makes a call to a hypothetical e-commerce/shopping API where it 
+- `GetImage`: Use the location name to search an image API for a relevant photo.
+- `ShoppingTool`: Makes a call to a hypothetical e-commerce/shopping API where it 
 finds the product, and simulates placing an order for that product.
 
 ## Project Breakdown
