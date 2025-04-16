@@ -37,9 +37,10 @@ export const packingHelperFlow = ai.defineFlow(
         // Data scheme for weather forecast in a given location
         const WeatherSchema = z.object({
             location: z.object({
-                city: z.string().describe('The name of the city where the traveler is going'), state: z.string().describe('The name of the state or province where the traveler is going')
+                city: z.string().describe('The name of the city where the traveler is going'),
+                state: z.string().describe('The name of the state or province where the traveler is going')
             }),
-            weatherForecast: z.string().describe(`The weather forecast for the next ${input.numberOfDays} days in ${input.location}. Include the temperature range.`),
+            weatherForecast: z.string().describe(`The weather forecast for the specified location. Include the temperature range.`),
         });
 
         const weatherResponse = await ai.generate({
@@ -55,7 +56,10 @@ export const packingHelperFlow = ai.defineFlow(
         const weather = weatherResponse.output.weatherForecast;
 
         // Data scheme to store daily outfit plans.
-        const OutfitPlannerSchema = z.array(z.object({ date: z.string().describe('The date this outfit should be worn.'), outfit: z.string('A description of the outfit to be worn with an itemized list of articles of clothing.') }));
+        const OutfitPlannerSchema = z.array(z.object({
+            date: z.string().describe('The date this outfit should be worn.'),
+            outfit: z.string('A description of the outfit to be worn with an itemized list of articles of clothing.')
+        }));
 
         const outfitsResponse = await ai.generate({
             system: 'You are an expert personal stylist. A traveler has asked you to put together outfits for them to wear for an upcoming travel trip. You curate outfits based on the weather and the traveler\'s preferences.',
