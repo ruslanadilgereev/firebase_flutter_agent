@@ -13,7 +13,13 @@ const PackingHelperInputSchema = z.object({
 });
 
 // OUTPUT Schema send to client
-const ArticleOfClothingSchema = z.object({ name: z.string().describe('Name of the article of clothing'), quantity: z.number().describe('Quantity of this item needed.'), dates: z.array(z.string().describe('dates when this article of clothing is applicable')), notes: z.string().optional().describe('Any additional notes for the user.'), optional: z.boolean().describe('Whether or not this item is optional') });
+const ArticleOfClothingSchema = z.object({
+    name: z.string().describe('Name of the article of clothing'),
+    quantity: z.number().describe('Quantity of this item needed.'),
+    dates: z.array(z.string().describe('dates when this article of clothing is applicable')),
+    notes: z.string().optional().describe('Any additional notes for the user.'),
+    optional: z.boolean().describe('Whether or not this item is optional')
+});
 
 const PackingChecklistSchema = z.object({
     items: z.array(ArticleOfClothingSchema).describe('The items that need to be packed'),
