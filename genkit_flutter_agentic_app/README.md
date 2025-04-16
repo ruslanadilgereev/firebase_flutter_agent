@@ -121,6 +121,7 @@ API to get the forecast ("mostly sunny... 70-80 degrees")
 finds the product, and simulates placing an order for that product.
 
 ## Project Breakdown
+```
 flutter_frontend/
 ├─ pubspec.yaml # Flutter app dependencies
 ├─ analysis_options.yaml
@@ -155,6 +156,7 @@ genkit_backend/
 │  │  ├─ purchase.js
 │  │  ├─ packingHelper.js
 ├─ package.json # Node dependencies
+```
 
 ### Looking for more Flutter & Genkit?
 Check out these sample projects:
