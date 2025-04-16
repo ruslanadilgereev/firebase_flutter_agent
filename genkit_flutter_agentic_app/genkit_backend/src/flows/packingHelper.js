@@ -12,6 +12,16 @@ const PackingHelperInputSchema = z.object({
     preferences: z.string().describe('The traveler\'s packing preferences when it comes to what they like to wear / pack for their vacation'),
 });
 
+// Intermediary Schema
+// Data scheme for weather forecast in a given location
+const WeatherSchema = z.object({
+    location: z.object({
+        city: z.string().describe('The name of the city where the traveler is going'),
+        state: z.string().describe('The name of the state or province where the traveler is going')
+    }),
+    weatherForecast: z.string().describe(`The weather forecast for the specified location. Include the temperature range.`),
+});
+
 // OUTPUT Schema send to client
 const ArticleOfClothingSchema = z.object({
     name: z.string().describe('Name of the article of clothing'),
@@ -34,14 +44,6 @@ export const packingHelperFlow = ai.defineFlow(
         inputSchema: PackingHelperInputSchema,
     },
     async (input) => {
-        // Data scheme for weather forecast in a given location
-        const WeatherSchema = z.object({
-            location: z.object({
-                city: z.string().describe('The name of the city where the traveler is going'),
-                state: z.string().describe('The name of the state or province where the traveler is going')
-            }),
-            weatherForecast: z.string().describe(`The weather forecast for the specified location. Include the temperature range.`),
-        });
 
         const weatherResponse = await ai.generate({
             prompt: `What is the weather forecast for ${input.location}? Once you have the weather information, please write a summary the forecast for the next ${input.numberOfDays} days in 2 sentences.`,
