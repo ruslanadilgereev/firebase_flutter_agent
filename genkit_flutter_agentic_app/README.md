@@ -21,13 +21,11 @@ But wait, there's more!
 
 ## Getting Started
 
-### Pre-requesites
-
-#### Dev Environment
+### Dev Environment
 - [Flutter](https://docs.flutter.dev/get-started/install) for your target platforms
 - [Genkit](https://firebase.google.com/docs/genkit/get-started)
 
-#### API Keys
+### API Keys
 - [Gemini API Key](https://ai.google.dev/gemini-api/docs/api-key) – For accessing the Gemini model.
 - [OpenWeather API Key](https://openweathermap.org/appid) – For LatLong and Weather tools.
 - [Unsplash Developer Access Key](https://unsplash.com/developers) – For the Unsplash Image tool.
