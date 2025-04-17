@@ -23,7 +23,7 @@ async function getLatLong(location) {
         throw new Error('Unable to get latitude and longitude.');
     }
     catch (error) {
-        return console.error(error);
+        throw new Error('Error fetching latitude and longitude:', error);
     }
 }
 
