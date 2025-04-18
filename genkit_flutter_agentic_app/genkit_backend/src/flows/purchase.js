@@ -2,16 +2,13 @@ import { z } from 'genkit';
 import { ai } from "../ai.js";
 import { OrderListSchema, orderedItem, shoppingTool } from "../tools/shopping.js";
 
-export const OrderConfirmationSchema = z.object({
-    totalPrice: z.number().describe('Total price of all the items ordered'),
-    orderedItems: z.array(orderedItem).describe('All of the items that were ordered'),
-});
-
+// PURCHASE FLOW
+// Input: Provide a list of items to order
+// Output: An order confirmation of the items ordered, itemized prices, and total order cost.
 export const purchaseFlow = ai.defineFlow(
     {
         name: 'purchaseFlow',
         inputSchema: OrderListSchema,
-        outputSchema: OrderConfirmationSchema,
     }, async (input) => {
 
         var orderedList = [];

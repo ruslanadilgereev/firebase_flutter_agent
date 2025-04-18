@@ -1,13 +1,11 @@
 import { ai } from "../ai.js";
 import { z } from 'genkit';
 
-// Ensure that you set the OpenWeather API key as an environment variable
 import { OPEN_WEATHER_API_KEY } from '../config.js';
 
-// Makes an API Call to the OpenWeather 5 day / 3 hour forecast API
-// and returns an object with {latitude, longitude}
-// https://openweathermap.org/api/geocoding-api
-
+// Makes an API Call to the OpenWeather 16 day / daily forecast API
+// Returns an array of daily forcast information such as high, low, humidity, and weather condition.
+// https://openweathermap.org/forecast16
 async function getWeather(lat, lon, days) {
     if (!OPEN_WEATHER_API_KEY) {
         throw new Error('OpenWeather API Key is missing. Please set the OPEN_WEATHER_API_KEY environment variable.');
@@ -87,23 +85,3 @@ export const getWeatherTool = ai.defineTool({
         ).describe('The weather forecast for the specified location.')
     },
 }, async (input) => await getWeather(input.lat, input.long, input.days));
-
-
-
-/* <Start output format>
-This is the weather forecast for the next 5 days:
-
-Date: <Date of the forecast in the format of: Day, Month Date, Year>
-- Low Temperature: <Low temperature for the day>
-- High Temperature: <High temperature for the day>
-- "Feels like" Temperature: <Feels like temperature range throughout the day>
-- Weather condition: <A brief description of the weather condition, such as cloudy, sunny, rain, snow, etc.>
-</end output format>
-
-Here's an example:
-Friday, April 18, 2025
-- Low Temperature: 60°F
-- High Temperature: 80°F
-- "Feels like" Temperature: 58°F - 81°F
-- Weather condition: Mostly cloudy with a chance of rain.
- */

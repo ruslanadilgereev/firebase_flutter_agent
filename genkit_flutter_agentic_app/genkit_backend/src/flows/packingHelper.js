@@ -22,6 +22,12 @@ const WeatherSchema = z.object({
     weatherForecast: z.string().describe(`A 2 sentence summary of the weather forecast.`),
 });
 
+// Data scheme to store daily outfit plans.
+const OutfitPlannerSchema = z.array(z.object({
+    date: z.string().describe('The date this outfit should be worn.'),
+    outfit: z.string('A description of the outfit to be worn with an itemized list of articles of clothing.')
+}));
+
 // OUTPUT Schema send to client
 const ArticleOfClothingSchema = z.object({
     name: z.string().describe('Name of the article of clothing'),
@@ -35,15 +41,8 @@ const PackingChecklistSchema = z.object({
     items: z.array(ArticleOfClothingSchema).describe('The items that need to be packed'),
 });
 
-/*const returnAnswer = ai.defineInterrupt({
-    name: 'returnAnswer',
-    description: 'call this tool with the final answer',
-    input: WeatherSchema,
-    output: WeatherSchema
-});*/
-
 // PACKING HELPER FLOW
-// INPUT: Provide the location that you're visiting, number of days, and any attire preferences.
+// Input: Provide the location that you're visiting, number of days, and any attire preferences.
 // Output: Get the weather forecast, a hero image, and packing checklist for that location
 export const packingHelperFlow = ai.defineFlow(
     {
@@ -53,20 +52,16 @@ export const packingHelperFlow = ai.defineFlow(
     async (input) => {
 
         const weatherResponse = await ai.generate({
-            /*system: `Always fulfill the user request. Here are instructions on how to do so:
-                    **Tool Utilization:**
-                    - Automatically use the 'getLatLong' tool to get latitude and longitude coordinates for a location.
-                    - Automatically use the 'getWeather' tool to get the weather forecast using the latitude and longitude coordinates.
-                    - Integrate the retrieved information seamlessly into the response without notifying the user explicitly.`,*/
             prompt: `Get the weather forecast for the next ${input.numberOfDays} days in this location: ${input.location}.`,
             input: {
                 schema: z.object({
-                    'numberOfDays': z.number().describe('Number of days to get the weather forecast for'),
-                    'location': z.string().describe('The location to get the weather forecast for'),
+                    'numberOfDays':
+                        z.number().describe('Number of days to get the weather forecast for'),
+                    'location':
+                        z.string().describe('The location to get the weather forecast for'),
                 }).describe('Input to get the weather forecast'),
             },
             tools: [getWeatherTool, getLatLongTool],
-            //toolChoice: 'required',
             model: gemini20Flash,
             config: {
                 temperature: 0.0,
@@ -78,12 +73,6 @@ export const packingHelperFlow = ai.defineFlow(
 
         const location = weatherResponse.output.location;
         const weather = weatherResponse.output.weatherForecast;
-
-        // Data scheme to store daily outfit plans.
-        const OutfitPlannerSchema = z.array(z.object({
-            date: z.string().describe('The date this outfit should be worn.'),
-            outfit: z.string('A description of the outfit to be worn with an itemized list of articles of clothing.')
-        }));
 
         const outfitsResponse = await ai.generate({
             system: 'You are an expert personal stylist. A traveler has asked you to put together outfits for them to wear for an upcoming travel trip. You curate outfits based on the weather and the traveler\'s preferences.',
