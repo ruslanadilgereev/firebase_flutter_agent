@@ -19,7 +19,7 @@ const WeatherSchema = z.object({
         city: z.string().describe('The name of the city where the traveler is going'),
         state: z.string().describe('The name of the state or province where the traveler is going')
     }),
-    weatherForecast: z.string().describe(`The weather forecast for the specified location. Include the temperature range.`),
+    weatherForecast: z.string().describe(`A 2 sentence summary of the weather forecast.`),
 });
 
 // OUTPUT Schema send to client
@@ -35,6 +35,13 @@ const PackingChecklistSchema = z.object({
     items: z.array(ArticleOfClothingSchema).describe('The items that need to be packed'),
 });
 
+/*const returnAnswer = ai.defineInterrupt({
+    name: 'returnAnswer',
+    description: 'call this tool with the final answer',
+    input: WeatherSchema,
+    output: WeatherSchema
+});*/
+
 // PACKING HELPER FLOW
 // INPUT: Provide the location that you're visiting, number of days, and any attire preferences.
 // Output: Get the weather forecast, a hero image, and packing checklist for that location
@@ -46,9 +53,24 @@ export const packingHelperFlow = ai.defineFlow(
     async (input) => {
 
         const weatherResponse = await ai.generate({
-            prompt: `What is the weather forecast for ${input.location}? Once you have the weather information, please write a summary the forecast for the next ${input.numberOfDays} days in 2 sentences.`,
+            /*system: `Always fulfill the user request. Here are instructions on how to do so:
+                    **Tool Utilization:**
+                    - Automatically use the 'getLatLong' tool to get latitude and longitude coordinates for a location.
+                    - Automatically use the 'getWeather' tool to get the weather forecast using the latitude and longitude coordinates.
+                    - Integrate the retrieved information seamlessly into the response without notifying the user explicitly.`,*/
+            prompt: `Get the weather forecast for the next ${input.numberOfDays} days in this location: ${input.location}.`,
+            input: {
+                schema: z.object({
+                    'numberOfDays': z.number().describe('Number of days to get the weather forecast for'),
+                    'location': z.string().describe('The location to get the weather forecast for'),
+                }).describe('Input to get the weather forecast'),
+            },
             tools: [getWeatherTool, getLatLongTool],
+            //toolChoice: 'required',
             model: gemini20Flash,
+            config: {
+                temperature: 0.0,
+            },
             output: {
                 schema: WeatherSchema,
             },
