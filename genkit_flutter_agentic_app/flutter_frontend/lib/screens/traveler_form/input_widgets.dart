@@ -11,7 +11,10 @@ class PreferencesInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: Spacing.m, bottom: Spacing.m),
+      padding: EdgeInsets.symmetric(
+        vertical: Spacing.m,
+        horizontal: Spacing.xl,
+      ),
       child: Column(
         children: [
           Text(
@@ -54,7 +57,7 @@ class TripLengthInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: Spacing.m, bottom: Spacing.m),
+      padding: EdgeInsets.all(Spacing.m),
       child: Column(
         children: [
           Text('How long is your trip?', style: inter16Bold),
@@ -96,7 +99,10 @@ class LocationInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: Spacing.m, bottom: Spacing.m),
+      padding: EdgeInsets.symmetric(
+        vertical: Spacing.m,
+        horizontal: Spacing.xl,
+      ),
       child: Column(
         children: [
           Text('Where are you going?', style: inter16Bold),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/traveler_form_model.dart';
 import 'settings/theme.dart';
-import 'screens/traveler_form/traveler_form.dart';
+import 'screens/traveler_form/traveler_form_screen.dart';
 
 void main() {
   runApp(const MyApp());
