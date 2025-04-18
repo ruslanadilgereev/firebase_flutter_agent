@@ -19,7 +19,6 @@ async function getWeather(lat, lon, days) {
         const response = await fetch(url);
         const data = await response.json();
         const weatherResponse = JSON.stringify(data);
-        console.log("Called Weather Tool!");
 
         const { text } = await ai.generate(`
             Summarize this weather forecast data with a description for each day in the following format:

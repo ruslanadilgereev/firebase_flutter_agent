@@ -11,8 +11,6 @@ async function getLatLong(location) {
     const url = `http://api.openweathermap.org/geo/1.0/direct?q=${location},usa&limit=1&appid=${OPEN_WEATHER_API_KEY}`;
     const options = { method: 'GET', headers: { accept: 'application/json' } };
 
-    console.log('Called getLatLong');
-
     try {
         const response = await fetch(url, options);
         const data = await response.json();
