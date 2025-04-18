@@ -63,9 +63,6 @@ export const packingHelperFlow = ai.defineFlow(
             },
             tools: [getWeatherTool, getLatLongTool],
             model: gemini20Flash,
-            config: {
-                temperature: 0.0,
-            },
             output: {
                 schema: WeatherSchema,
             },
@@ -79,7 +76,7 @@ export const packingHelperFlow = ai.defineFlow(
             prompt: `Using your fashion expertise, please create an itemized list of ${input.numberOfDays} outfits that the user should pack for the weather forecast: ${weather} and matches the traveler's attire preferences: ${input.preferences}. 
             Follow these rules: 
             - Every outfit needs to have at least a top (tshirt, shirt, sweater.) and bottom (pants, jeans, sweatpants, skirt.) unless the outfit is a dress. 
-            - Layers are allowed, so 
+            - Layers of clothes are allowed, so the traveler can wear jackets, cardigans, hoodies, etc. 
             - If it's cold or raining, the traveler will need a jacket that can be worn for multiple days.
             - If it's sunny, suggest sunglasses and a hat.`,
             config: {
