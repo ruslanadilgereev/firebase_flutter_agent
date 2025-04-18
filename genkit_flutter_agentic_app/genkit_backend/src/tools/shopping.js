@@ -11,12 +11,16 @@ export const orderedItemsList = z.object({
     orderedItems: z.array(orderedItem).describe('All of the items that were ordered'),
 });
 
+// Makes a fake API Call to "buy" an item in a certain quantity
+// Returns an object containing the item name, quantity ordered, itemized price, and total price (itemized price * quantity).
+// https://openweathermap.org/forecast16
 async function searchFakeShoppingAPIAndBuy(item, quantity) {
     var itemizedPrice = parseFloat((Math.random() * 100).toFixed(2));
     var totalPrice = parseFloat(itemizedPrice * quantity);
     return { 'name': item, 'quantity': quantity, 'price': itemizedPrice, 'totalPrice': totalPrice }
 }
 
+// Define a Genkit tool to "buy" items from the DepartmentStore catalog
 export const shoppingTool = ai.defineTool({
     name: 'shoppingTool',
     description: 'Search for an item in the DepartmentStore catalog and buy it.',

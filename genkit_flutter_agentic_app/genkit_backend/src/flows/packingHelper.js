@@ -19,8 +19,14 @@ const WeatherSchema = z.object({
         city: z.string().describe('The name of the city where the traveler is going'),
         state: z.string().describe('The name of the state or province where the traveler is going')
     }),
-    weatherForecast: z.string().describe(`The weather forecast for the specified location. Include the temperature range.`),
+    weatherForecast: z.string().describe(`A 2 sentence summary of the weather forecast.`),
 });
+
+// Data scheme to store daily outfit plans.
+const OutfitPlannerSchema = z.array(z.object({
+    date: z.string().describe('The date this outfit should be worn.'),
+    outfit: z.string('A description of the outfit to be worn with an itemized list of articles of clothing.')
+}));
 
 // OUTPUT Schema send to client
 const ArticleOfClothingSchema = z.object({
@@ -36,7 +42,7 @@ const PackingChecklistSchema = z.object({
 });
 
 // PACKING HELPER FLOW
-// INPUT: Provide the location that you're visiting, number of days, and any attire preferences.
+// Input: Provide the location that you're visiting, number of days, and any attire preferences.
 // Output: Get the weather forecast, a hero image, and packing checklist for that location
 export const packingHelperFlow = ai.defineFlow(
     {
@@ -46,7 +52,15 @@ export const packingHelperFlow = ai.defineFlow(
     async (input) => {
 
         const weatherResponse = await ai.generate({
-            prompt: `What is the weather forecast for ${input.location}? Once you have the weather information, please write a summary the forecast for the next ${input.numberOfDays} days in 2 sentences.`,
+            prompt: `Get the weather forecast for the next ${input.numberOfDays} days in this location: ${input.location}.`,
+            input: {
+                schema: z.object({
+                    'numberOfDays':
+                        z.number().describe('Number of days to get the weather forecast for'),
+                    'location':
+                        z.string().describe('The location to get the weather forecast for'),
+                }).describe('Input to get the weather forecast'),
+            },
             tools: [getWeatherTool, getLatLongTool],
             model: gemini20Flash,
             output: {
@@ -57,18 +71,12 @@ export const packingHelperFlow = ai.defineFlow(
         const location = weatherResponse.output.location;
         const weather = weatherResponse.output.weatherForecast;
 
-        // Data scheme to store daily outfit plans.
-        const OutfitPlannerSchema = z.array(z.object({
-            date: z.string().describe('The date this outfit should be worn.'),
-            outfit: z.string('A description of the outfit to be worn with an itemized list of articles of clothing.')
-        }));
-
         const outfitsResponse = await ai.generate({
             system: 'You are an expert personal stylist. A traveler has asked you to put together outfits for them to wear for an upcoming travel trip. You curate outfits based on the weather and the traveler\'s preferences.',
             prompt: `Using your fashion expertise, please create an itemized list of ${input.numberOfDays} outfits that the user should pack for the weather forecast: ${weather} and matches the traveler's attire preferences: ${input.preferences}. 
             Follow these rules: 
             - Every outfit needs to have at least a top (tshirt, shirt, sweater.) and bottom (pants, jeans, sweatpants, skirt.) unless the outfit is a dress. 
-            - Layers are allowed, so 
+            - Layers of clothes are allowed, so the traveler can wear jackets, cardigans, hoodies, etc. 
             - If it's cold or raining, the traveler will need a jacket that can be worn for multiple days.
             - If it's sunny, suggest sunglasses and a hat.`,
             config: {
