@@ -1,5 +1,6 @@
 import { ai } from "../ai.js";
 import { z } from 'genkit';
+
 import { OPEN_WEATHER_API_KEY } from '../config.js';
 
 // Makes an API Call to the OpenWeather Geocoding API
