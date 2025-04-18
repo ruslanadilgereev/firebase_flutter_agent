@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../models/packing_list_model.dart';
 import '../../models/traveler_form_model.dart';
-import '../components.dart';
 import '../packing_list/packing_list_screen.dart';
-import '../../settings/styles.dart';
+import '../components.dart';
 import './get_packing_list_button.dart';
 import './input_widgets.dart';
 
