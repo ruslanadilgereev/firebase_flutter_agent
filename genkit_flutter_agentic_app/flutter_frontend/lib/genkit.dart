@@ -10,6 +10,7 @@ class Genkit {
     'content-type': 'application/json',
   };
 
+  // Make call to PackingHelperFlow with traveler preferences and return a PackingList data model.
   static Future<PackingListModel> packingHelperFlow(
     String location,
     int lengthOfStay,
@@ -44,6 +45,7 @@ class Genkit {
     }
   }
 
+  // Make call to PurchaseFlow with a list of items and return an OrderConfirmation data model.
   static Future<OrderConfirmationModel> purchaseFlow(List<Item> items) async {
     var url = Uri.http(genkitServerEndpoint, 'purchaseFlow');
 
@@ -56,19 +58,15 @@ class Genkit {
       },
     });
 
-    print(body);
-
-    http.Response response;
-
     try {
-      response = await http.post(url, body: body, headers: _headers);
-
-      print(response.body);
+      http.Response response = await http.post(
+        url,
+        body: body,
+        headers: _headers,
+      );
 
       OrderConfirmationModel orderConfirmation =
           OrderConfirmationModel.fromJson(response.body);
-
-      print(orderConfirmation.toString());
 
       return orderConfirmation;
     } catch (e) {
