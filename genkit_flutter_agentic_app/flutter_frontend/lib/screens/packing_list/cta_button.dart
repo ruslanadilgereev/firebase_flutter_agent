@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/packing_list_model.dart';
 import '../../settings/styles.dart';
-import '../order_confirmation.dart';
+import '../order_confirmation/order_confirmation.dart';
 
 class CTAButton extends StatelessWidget {
   const CTAButton({required this.itemsRemaining, super.key});

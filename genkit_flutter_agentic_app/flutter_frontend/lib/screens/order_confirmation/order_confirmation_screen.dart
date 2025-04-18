@@ -77,7 +77,6 @@ class OrderConfirmationScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               SizedBox.square(dimension: Spacing.m),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
