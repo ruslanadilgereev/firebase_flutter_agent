@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+/// Manages the state for the traveler input form.
+///
+/// Holds the user's input for trip [location], [lengthOfStay], and any
+/// packing [preferences]. It uses [ChangeNotifier] to allow UI elements
+/// to react to changes in the form data (though not strictly necessary
+/// if only used for validation and submission). Includes a [validate] method
+/// to check for required fields.
 class TravelerFormModel extends ChangeNotifier {
   String location;
   int lengthOfStay;
@@ -11,6 +18,10 @@ class TravelerFormModel extends ChangeNotifier {
     this.preferences = '',
   });
 
+  /// Validates the form fields.
+  ///
+  /// Checks if the location is provided and if the length of stay is positive.
+  /// Returns a list of error messages; an empty list indicates the form is valid.
   List<String> validate() {
     List<String> errors = [];
 

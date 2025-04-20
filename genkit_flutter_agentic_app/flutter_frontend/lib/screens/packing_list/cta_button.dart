@@ -34,9 +34,8 @@ class _BuyButtonState extends State<BuyButton> {
       _loading = true;
     });
     try {
-      var orderConfirmation = await context
-          .read<PackingListModel>()
-          .orderRemaining(context);
+      var orderConfirmation =
+          await context.read<PackingListModel>().orderRemaining();
       if (!context.mounted || orderConfirmation == null) return;
 
       Navigator.of(context).push(

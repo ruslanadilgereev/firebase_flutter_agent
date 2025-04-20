@@ -1,3 +1,7 @@
+/// Represents a single item to be packed for a trip.
+///
+/// Contains details like the item's name, quantity, associated dates (if any),
+/// whether it's optional, any notes, and its current packed status.
 class Item {
   final List<String> dates;
   final String name;
@@ -43,10 +47,12 @@ class Item {
     };
   }
 
+  /// Toggles the [packed] status of the item.
+  ///
+  /// Returns the quantity if the item is packed, or the negative quantity
+  /// is unpacked. This is used to update the running total of packed items.
   num togglePacked() {
     packed = !packed;
-    // Return the quantity if packed, otherwise return the negative quantity.
-    // This is useful for tracking the change in the number of packed items.
     return packed ? quantity : -quantity;
   }
 }
