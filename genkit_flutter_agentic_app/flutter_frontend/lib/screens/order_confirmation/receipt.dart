@@ -4,10 +4,18 @@ import 'package:flutter_app/models/order_confirmation_model.dart';
 
 import '../../settings/styles.dart';
 
+/// A widget that displays a formatted receipt for an order.
+///
+/// It takes a list of [OrderItem]s and the [totalPrice] to render
+/// a scrollable list including a thank you message, individual item details,
+/// and the final total.
 class Receipt extends StatelessWidget {
   const Receipt({required this.items, required this.totalPrice, super.key});
 
+  /// The list of items included in the order.
   final List<OrderItem> items;
+
+  /// The total calculated price for all items in the order.
   final double totalPrice;
 
   @override
@@ -26,6 +34,7 @@ class Receipt extends StatelessWidget {
   }
 }
 
+/// A widget displaying a centered thank you message.
 class ThankYouMessage extends StatelessWidget {
   const ThankYouMessage({super.key});
 
@@ -42,9 +51,14 @@ class ThankYouMessage extends StatelessWidget {
   }
 }
 
+/// A widget representing a single line item within the [Receipt].
+///
+/// Displays the quantity, name, individual price (if quantity > 1),
+/// and total price (quantity * price) for the given [OrderItem].
 class ReceiptItem extends StatelessWidget {
   const ReceiptItem({required this.item, super.key});
 
+  /// The order item data to display.
   final OrderItem item;
 
   @override
@@ -92,9 +106,13 @@ class ReceiptItem extends StatelessWidget {
   }
 }
 
+/// A widget to display the final total price at the end of the [Receipt].
+///
+/// Shows the text "Total: $X.XX" right-aligned.
 class TotalPrice extends StatelessWidget {
   const TotalPrice({required this.totalPrice, super.key});
 
+  /// The final total price to display.
   final double totalPrice;
 
   @override

@@ -29,7 +29,7 @@ class BuyButton extends StatefulWidget {
 class _BuyButtonState extends State<BuyButton> {
   bool _loading = false;
 
-  void purchaseRemainingItems() async {
+  void purchaseRemainingItems(BuildContext context) async {
     setState(() {
       _loading = true;
     });
@@ -65,7 +65,7 @@ class _BuyButtonState extends State<BuyButton> {
         child: FloatingActionButton.extended(
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
-          onPressed: _loading ? null : purchaseRemainingItems,
+          onPressed: _loading ? null : () => purchaseRemainingItems(context),
           icon:
               _loading
                   ? CircularProgressIndicator(

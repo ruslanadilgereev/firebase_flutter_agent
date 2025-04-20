@@ -6,9 +6,18 @@ import 'package:flutter_app/settings/theme.dart';
 import './receipt.dart';
 import './go_home_button.dart';
 
+/// A screen widget that displays the details of a completed order.
+///
+/// This screen shows an AppBar with the title "Order Confirmation",
+/// a [Receipt] widget in the body displaying the ordered items and total price,
+/// and a [GoHomeButton] in the bottom navigation bar to allow the user
+/// to easily return to the main menu.
+///
+/// Requires an [OrderConfirmationModel] containing the order details.
 class OrderConfirmationScreen extends StatelessWidget {
   const OrderConfirmationScreen({required this.orderConfirmation, super.key});
 
+  /// The data model containing the details of the confirmed order.
   final OrderConfirmationModel orderConfirmation;
 
   @override
@@ -16,8 +25,8 @@ class OrderConfirmationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Order Confirmation',
           style: subheaderStyle.copyWith(color: orange),
+          'Order Confirmation',
         ),
       ),
       body: BodyWhitespace(

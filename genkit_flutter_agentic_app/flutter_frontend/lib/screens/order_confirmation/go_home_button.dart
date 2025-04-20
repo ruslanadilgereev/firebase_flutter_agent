@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../settings/styles.dart';
 
+/// A button widget designed to navigate the user back to the initial route
+/// (the home screen) of the application.
+///
+/// This widget displays a `FloatingActionButton.extended` with a home icon
+/// and the text "Great! Go back to main menu.". It uses the primary
+/// color scheme from the current theme for its background and foreground.
+///
+/// When tapped, it pops routes from the navigation stack until it reaches
+/// the very first route (`route.isFirst`).
 class GoHomeButton extends StatelessWidget {
   const GoHomeButton({super.key});
 
