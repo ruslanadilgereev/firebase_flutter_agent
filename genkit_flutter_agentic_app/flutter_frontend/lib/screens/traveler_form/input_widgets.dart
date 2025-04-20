@@ -11,10 +11,7 @@ class PreferencesInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: Spacing.m,
-        horizontal: Spacing.xl,
-      ),
+      padding: EdgeInsets.symmetric(vertical: Size.m, horizontal: Size.xl),
       child: Column(
         children: [
           Text(
@@ -22,13 +19,13 @@ class PreferencesInput extends StatelessWidget {
             textAlign: TextAlign.center,
             'Requirements or preferences?',
           ),
-          SizedBox.square(dimension: Spacing.s),
+          SizedBox.square(dimension: Size.s),
           Text(
             style: inter16,
             textAlign: TextAlign.center,
             'Let us know if you need to pack for formal events, activities, etc.',
           ),
-          SizedBox.square(dimension: Spacing.m),
+          SizedBox.square(dimension: Size.m),
           TextFormField(
             decoration: InputDecoration(
               hintText: 'I like to wear Hawaiian shirts.',
@@ -57,7 +54,7 @@ class TripLengthInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Spacing.m),
+      padding: EdgeInsets.all(Size.m),
       child: Column(
         children: [
           Text('How long is your trip?', style: inter16Bold),
@@ -99,10 +96,7 @@ class LocationInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: Spacing.m,
-        horizontal: Spacing.xl,
-      ),
+      padding: EdgeInsets.symmetric(vertical: Size.m, horizontal: Size.xl),
       child: Column(
         children: [
           Text('Where are you going?', style: inter16Bold),

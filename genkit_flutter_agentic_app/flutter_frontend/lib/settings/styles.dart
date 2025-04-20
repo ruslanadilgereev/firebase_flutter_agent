@@ -40,7 +40,7 @@ TextStyle paragraphStyle = GoogleFonts.inter(fontSize: 16);
 
 final double heroAppBarHeight = 180.0;
 
-class Spacing {
+class Size {
   static double get xs => 4;
   static double get s => 8;
   static double get m => 16;

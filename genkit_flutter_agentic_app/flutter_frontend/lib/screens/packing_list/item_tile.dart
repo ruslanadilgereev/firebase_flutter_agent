@@ -43,15 +43,12 @@ class ItemTile extends StatelessWidget {
               : null,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: Spacing.l,
-            vertical: Spacing.xs,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: Size.l, vertical: Size.xs),
           child: Column(
             children: [
               if (item.notes.isNotEmpty)
                 Padding(
-                  padding: EdgeInsets.only(bottom: Spacing.m),
+                  padding: EdgeInsets.only(bottom: Size.m),
                   child: Text(style: paragraphStyle, item.notes),
                 ),
               WrappedChips(values: item.dates),
@@ -76,13 +73,13 @@ class WrappedChips extends StatelessWidget {
               .map(
                 (e) => Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: Spacing.s,
-                    vertical: Spacing.xs,
+                    horizontal: Size.s,
+                    vertical: Size.xs,
                   ),
                   child: Chip(
                     color: WidgetStateProperty.all(offWhite),
                     label: Text(
-                      style: TextStyle(fontSize: Spacing.m),
+                      style: TextStyle(fontSize: Size.m),
                       e.toString(),
                     ),
                   ),

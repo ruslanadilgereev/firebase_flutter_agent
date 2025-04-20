@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/packing_list_model.dart';
 import '../../settings/styles.dart';
-import '../order_confirmation/order_confirmation.dart';
+import '../order_confirmation/order_confirmation_screen.dart';
 
 class CTAButton extends StatelessWidget {
   const CTAButton({required this.itemsRemaining, super.key});
@@ -29,44 +29,43 @@ class BuyButton extends StatefulWidget {
 class _BuyButtonState extends State<BuyButton> {
   bool _loading = false;
 
+  void purchaseRemainingItems() async {
+    setState(() {
+      _loading = true;
+    });
+    try {
+      var orderConfirmation = await context
+          .read<PackingListModel>()
+          .orderRemaining(context);
+      if (!context.mounted || orderConfirmation == null) return;
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return OrderConfirmationScreen(
+              orderConfirmation: orderConfirmation,
+            );
+          },
+        ),
+      );
+    } catch (e) {
+      debugPrint('Error: $e');
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.all(Spacing.m),
+        padding: EdgeInsets.all(Size.m),
         child: FloatingActionButton.extended(
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
-          onPressed:
-              _loading
-                  ? null
-                  : () async {
-                    setState(() {
-                      _loading = true;
-                    });
-                    try {
-                      var orderConfirmation = await context
-                          .read<PackingListModel>()
-                          .orderRemaining(context);
-                      if (!context.mounted || orderConfirmation == null) return;
-
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return OrderConfirmationScreen(
-                              orderConfirmation: orderConfirmation,
-                            );
-                          },
-                        ),
-                      );
-                    } catch (e) {
-                      debugPrint('Error: $e');
-                    } finally {
-                      setState(() {
-                        _loading = false;
-                      });
-                    }
-                  },
+          onPressed: _loading ? null : purchaseRemainingItems,
           icon:
               _loading
                   ? CircularProgressIndicator(
@@ -77,7 +76,7 @@ class _BuyButtonState extends State<BuyButton> {
               _loading
                   ? Text(
                     style: TextStyle(fontSize: 24),
-                    'Buying ${widget.itemQuantity} items...',
+                    'Ordering ${widget.itemQuantity} items...',
                   )
                   : Text(
                     style: TextStyle(fontSize: 24),
@@ -97,7 +96,7 @@ class AllPackedBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.all(Spacing.m),
+        padding: EdgeInsets.all(Size.m),
         height: 80,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

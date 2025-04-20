@@ -9,11 +9,11 @@ class GetPackingListButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.all(Spacing.l),
+      padding: EdgeInsetsGeometry.all(Size.l),
       child: ElevatedButton.icon(
         style: ButtonStyle(
           padding: WidgetStatePropertyAll(
-            EdgeInsets.symmetric(vertical: Spacing.s, horizontal: Spacing.l),
+            EdgeInsets.symmetric(vertical: Size.s, horizontal: Size.l),
           ),
           textStyle: WidgetStatePropertyAll(
             Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 18),

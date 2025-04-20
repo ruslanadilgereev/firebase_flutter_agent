@@ -26,7 +26,7 @@ class BodyWhitespace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsets.all(Spacing.s), child: child);
+    return Padding(padding: EdgeInsets.all(Size.s), child: child);
   }
 }
 
@@ -49,7 +49,7 @@ class PageSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: Spacing.m),
+      padding: EdgeInsets.symmetric(vertical: Size.m),
       child: Text(style: subheaderStyle, text),
     );
   }
@@ -63,7 +63,7 @@ class ParagraphText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Spacing.m, vertical: Spacing.m),
+      padding: EdgeInsets.symmetric(horizontal: Size.m, vertical: Size.m),
       child: Text(style: paragraphStyle, text),
     );
   }
