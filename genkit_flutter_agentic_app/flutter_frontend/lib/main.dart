@@ -4,18 +4,26 @@ import 'models/traveler_form_model.dart';
 import 'settings/theme.dart';
 import 'screens/traveler_form/traveler_form_screen.dart';
 
+/// The main entry point for the Flutter application.
 void main() {
-  runApp(const MyApp());
+  runApp(const MyPackingListApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyPackingListApp extends StatefulWidget {
+  const MyPackingListApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyPackingListApp> createState() => _MyPackingListAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+/// The state associated with [MyPackingListApp].
+///
+/// This class builds the main UI structure using [MaterialApp], configuring the theme,
+/// title, and initial navigation setup. It manages a [GlobalKey] for the
+/// root [Navigator] and uses [ChangeNotifierProvider] to make the
+/// [TravelerFormModel] available to the initial screen ([TravelerFormScreen]).
+class _MyPackingListAppState extends State<MyPackingListApp> {
+  // A global key used to uniquely identify and manage the root Navigator's state.
   final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
   @override
