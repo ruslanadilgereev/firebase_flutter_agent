@@ -20,16 +20,13 @@ class Receipt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(textTheme: GoogleFonts.caveatTextTheme()),
-      child: ListView(
-        padding: EdgeInsets.all(Size.m),
-        children: [
-          ThankYouMessage(),
-          ...items.map((item) => ReceiptItem(item: item)),
-          TotalPrice(totalPrice: totalPrice),
-        ],
-      ),
+    return ListView(
+      padding: EdgeInsets.all(Size.m),
+      children: [
+        ThankYouMessage(),
+        ...items.map((item) => ReceiptItem(item: item)),
+        TotalPrice(totalPrice: totalPrice),
+      ],
     );
   }
 }
