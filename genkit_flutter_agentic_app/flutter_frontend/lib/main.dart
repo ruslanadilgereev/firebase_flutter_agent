@@ -8,9 +8,6 @@ void main() {
   runApp(const MyApp());
 }
 
-//final packingList = PackingListModel();
-final travelerForm = TravelerFormModel();
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
