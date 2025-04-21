@@ -28,7 +28,12 @@ class TravelerFormScreen extends StatefulWidget {
 }
 
 class _TravelerFormScreenState extends State<TravelerFormScreen> {
+  /// Tracks whether the packing list is currently being fetched from the backend.
+  /// Used to conditionally display a loading indicator.
   bool _loading = false;
+
+  /// Controllers for the location, trip length, and preferences text input fields.
+  /// Manages its text content.
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _lengthOfStayController = TextEditingController();
   final TextEditingController _preferencesController = TextEditingController();
@@ -51,6 +56,7 @@ class _TravelerFormScreenState extends State<TravelerFormScreen> {
   /// Shows a loading indicator during the fetch and displays error messages
   /// via [SnackBar] if validation fails or the fetch encounters an error.
   void getPackingList(BuildContext context) async {
+    // Access the form model to get the current input values.
     TravelerFormModel form = context.read<TravelerFormModel>();
 
     // Validate that user's form has all necessary fields filled out
