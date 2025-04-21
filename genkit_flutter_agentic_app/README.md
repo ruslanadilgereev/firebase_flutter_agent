@@ -122,40 +122,51 @@ finds the product, and simulates placing an order for that product.
 
 ## Project Breakdown
 ```
-flutter_frontend/
-├─ pubspec.yaml # Flutter app dependencies
-├─ analysis_options.yaml
-├─ lib/
-│  ├─ models/ # Data models that are used throughout the app
-│  │  ├─ item_model.dart
-│  │  ├─ packing_list_model.dart
-│  │  ├─ order_confirmation_model.dart
-│  │  ├─ traveler_form_model.dart
-│  ├─ screens/ # All of the screens in the app
-│  │  ├─ components.dart 
-│  │  ├─ order_confirmation.dart
-│  │  ├─ packing_list.dart
-│  │  ├─ traveler_form.dart
-│  ├─ settings/ 
-│  │  ├─ config.dart # Configure Genkit Server endpoint
-│  │  ├─ styles.dart
-│  │  ├─ theme.dart
-│  ├─ main.dart # Flutter client app's entrypoint
-│  ├─ genkit.dart/ # Class for making network calls to Genkit
-genkit_backend/
-├─ src/
-│  ├─ ai.js # Configure a Genkit instance 
-│  ├─ app.js # Genkit app server's entrypoint
-│  ├─ config.js # Pulls API keys from environment variables
-│  ├─ tools/ # Tools / Function Calls
-│  │  ├─ latlong.js 
-│  │  ├─ shopping.js
-│  │  ├─ unsplash.js
-│  │  ├─ weather.js
-│  ├─ flows/ # Flow definitions 
-│  │  ├─ purchase.js
-│  │  ├─ packingHelper.js
-├─ package.json # Node dependencies
+genkit_flutter_agentic_app/
+├── flutter_frontend/
+│   ├── pubspec.yaml              # Flutter project configuration and dependencies
+│   ├── analysis_options.yaml
+│   └── lib/
+│       ├── models/               # Data model classes for the app
+│       │   ├── item_model.dart
+│       │   ├── packing_list_model.dart
+│       │   ├── order_confirmation_model.dart
+│       │   └── traveler_form_model.dart
+│       ├── screens/              # All of the screens in the app
+│       │   ├── components.dart   # Reusable UI components used across screens
+│       │   ├── order_confirmation/ # Components for the order confirmation screen
+│       │   │   ├── go_home_button.dart
+│       │   │   ├── order_confirmation_screen.dart # Main screen displaying the Order Confirmation
+│       │   │   └── receipt.dart
+│       │   ├── packing_list/     # Screen to display the packing list.
+│       │   │   ├── cta_button.dart
+│       │   │   ├── hero_app_bar.dart
+│       │   │   ├── item_tile.dart
+│       │   │   └── packing_list_screen.dart # Main screen displaying the packing list
+│       │   └── traveler_form/    # Screen to collect user input for initial trip input form
+│       │   │   ├── get_packing_list_button.dart
+│       │   │   ├── input_widgets.dart
+│       │       └── traveler_form_screen.dart # Main menu screen for collecting trip details
+│       ├── settings/             # Application-wide settings and configurations
+│       │   ├── config.dart       # Configure Genkit Server endpoint
+│       │   ├── styles.dart       # Shared text styles and sizing constants
+│       │   └── theme.dart        # Application theme definitions
+│       ├── main.dart             # Flutter client app's main entrypoint
+│       └── genkit.dart           # Utility class for interacting with the Genkit app
+└── genkit_backend/
+    ├── src/
+    │   ├── ai.js                 # Configure a Genkit instance with the Gemini model
+    │   ├── app.js                # Genkit app server's entrypoint (Express)
+    │   ├── config.js             # Pulls API keys from environment variables
+    │   ├── tools/                # Tools (functions callable by the AI model)
+    │   │   ├── latlong.js        # Get latitude/longitude from a location name
+    │   │   ├── shopping.js       # Simulate purchasing items
+    │   │   ├── unsplash.js       # Fetch images from Unsplash
+    │   │   └── weather.js        # Get weather forecast using latitude/longitude
+    │   └── flows/                # Flow definitions
+    │       ├── purchase.js       # Flow for handling item purchases
+    │       └── packingHelper.js  # Flow for generating the packing list
+    └── package.json              # Node dependencies
 ```
 
 ### Looking for more Flutter & Genkit?
