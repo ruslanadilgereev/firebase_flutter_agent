@@ -71,7 +71,7 @@ class PageSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: Size.m),
+      padding: EdgeInsets.symmetric(vertical: Size.s),
       child: Text(style: subheaderStyle, text),
     );
   }
@@ -90,7 +90,7 @@ class ParagraphText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Size.m, vertical: Size.m),
+      padding: EdgeInsets.symmetric(horizontal: Size.m, vertical: Size.xs),
       child: Text(style: paragraphStyle, text),
     );
   }
