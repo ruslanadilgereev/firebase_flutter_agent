@@ -61,27 +61,30 @@ class _BuyButtonState extends State<BuyButton> {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.all(Size.m),
-        child: FloatingActionButton.extended(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          foregroundColor: Theme.of(context).colorScheme.onPrimary,
-          onPressed: _loading ? null : () => purchaseRemainingItems(context),
-          icon:
-              _loading
-                  ? CircularProgressIndicator(
+        child:
+            _loading
+                ? FloatingActionButton.extended(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  onPressed: null,
+                  icon: CircularProgressIndicator(
                     color: Theme.of(context).colorScheme.onPrimary,
-                  )
-                  : Icon(size: 32, Icons.shopping_bag_outlined),
-          label:
-              _loading
-                  ? Text(
+                  ),
+                  label: Text(
                     style: TextStyle(fontSize: 24),
                     'Ordering ${widget.itemQuantity} items...',
-                  )
-                  : Text(
+                  ),
+                )
+                : FloatingActionButton.extended(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  onPressed: () => purchaseRemainingItems(context),
+                  icon: Icon(size: 32, Icons.shopping_bag_outlined),
+                  label: Text(
                     style: TextStyle(fontSize: 24),
                     'Buy ${widget.itemQuantity} remaining items',
                   ),
-        ),
+                ),
       ),
     );
   }
