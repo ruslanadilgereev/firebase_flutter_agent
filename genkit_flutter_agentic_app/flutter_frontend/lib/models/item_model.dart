@@ -50,7 +50,7 @@ class Item {
   /// Toggles the [packed] status of the item.
   ///
   /// Returns the quantity if the item is packed, or the negative quantity
-  /// is unpacked. This is used to update the running total of packed items.
+  /// if it is unpacked. This is used to update the running total of packed items.
   num togglePacked() {
     packed = !packed;
     return packed ? quantity : -quantity;

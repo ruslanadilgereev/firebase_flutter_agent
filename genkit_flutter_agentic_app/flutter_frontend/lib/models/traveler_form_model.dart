@@ -37,7 +37,7 @@ class TravelerFormModel extends ChangeNotifier {
 
     if (lengthOfStay > 16) {
       errors.add(
-        'We can\'t get the weather forecast that far out! Please shorten shorten the trip length.',
+        'We can\'t get the weather forecast that far out! Please shorten the trip length.',
       );
     }
 
