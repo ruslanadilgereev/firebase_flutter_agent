@@ -132,18 +132,18 @@ genkit_flutter_agentic_app/
 │       │   ├── packing_list_model.dart
 │       │   ├── order_confirmation_model.dart
 │       │   └── traveler_form_model.dart
-│       ├── screens/              # All of the screens in the app
+│       ├── screens/              # Screens in the app
 │       │   ├── components.dart
-│       │   ├── order_confirmation/ # Components for the order confirmation screen
+│       │   ├── order_confirmation/ # Display an order confirmation
 │       │   │   ├── go_home_button.dart
 │       │   │   ├── order_confirmation_screen.dart # Main screen displaying the Order Confirmation
 │       │   │   └── receipt.dart
-│       │   ├── packing_list/     # Screen to display the packing list.
+│       │   ├── packing_list/     # Display the packing list.
 │       │   │   ├── cta_button.dart
 │       │   │   ├── hero_app_bar.dart
 │       │   │   ├── item_tile.dart
 │       │   │   └── packing_list_screen.dart # Main screen displaying the packing list
-│       │   └── traveler_form/    # Screen to collect user input for initial trip input form
+│       │   └── traveler_form/    # Display the user input form to collect trip details
 │       │   │   ├── get_packing_list_button.dart
 │       │   │   ├── input_widgets.dart
 │       │       └── traveler_form_screen.dart # Main menu screen for collecting trip details
