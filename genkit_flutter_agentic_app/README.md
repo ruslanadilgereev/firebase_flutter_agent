@@ -59,6 +59,11 @@ to install the Flutter app dependencies.
 
 > [!TIP]
 > Get available devices by running `flutter devices` ex: `AA8A7357`, `macos`, `chrome`.
+
+For testing on an Android emulator, you'll need to change the endpoint to "10.0.2.2:2222"
+instead of the default "localhost:2222" in 
+[`flutter_frontend/lib/settings/config.dart`](https://github.com/flutter/demos/blob/main/genkit_flutter_agentic_app/flutter_frontend/lib/settings/config.dart).
+For more info, see: [Android Emulator Networking](https://developer.android.com/studio/run/emulator-networking.html)
    
 Enter your trip and see what outfits the app suggest for you! 
 

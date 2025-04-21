@@ -126,15 +126,17 @@ class _TravelerFormScreenState extends State<TravelerFormScreen> {
             _loading
                 // Conditionally display a loading indicator or the form.
                 ? Center(child: CircularProgressIndicator())
-                : Column(
-                  children: [
-                    LocationInput(controller: _locationController),
-                    TripLengthInput(controller: _lengthOfStayController),
-                    PreferencesInput(controller: _preferencesController),
-                    GetPackingListButton(
-                      onPressed: () => getPackingList(context),
-                    ),
-                  ],
+                : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      LocationInput(controller: _locationController),
+                      TripLengthInput(controller: _lengthOfStayController),
+                      PreferencesInput(controller: _preferencesController),
+                      GetPackingListButton(
+                        onPressed: () => getPackingList(context),
+                      ),
+                    ],
+                  ),
                 ),
       ),
     );
