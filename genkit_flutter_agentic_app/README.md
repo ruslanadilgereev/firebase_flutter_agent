@@ -86,7 +86,7 @@ Each model represents data in the app, these tend to match up to a particular sc
 - `OrderConfirmationModel`: A model that represents an order confirmation
 
 #### Connecting to Genkit
-`Genkit` is a helper class that manages and abstracts away the Genkit Flow 
+`Genkit` is a utility class that manages and abstracts away the Genkit Flow 
 (network) calls to the Genkit backend server. It also handles parsing of the 
 responses. So unless there’s an error, these methods return an object such as 
 OrderConfirmationModel and PackingListModel which can be used immediately by 
