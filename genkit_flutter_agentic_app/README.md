@@ -1,5 +1,10 @@
 # My Packing List: Pack Smarter, Not Harder.
 
+## Tech Stack
+Frontend: [Flutter](https://flutter.dev/)
+Backend: [Genkit](https://firebase.google.com/docs/genkit), [Node.js](https://nodejs.org/en/), [Express](https://expressjs.com/), [Gemini 2.0 Flash](https://ai.google.dev/gemini-api/docs/models#gemini-2.0-flash)
+APIs: [OpenWeather](https://openweathermap.org/), [Unsplash](https://unsplash.com/developers)
+
 ![My Packing List Screenshots](README/my-packing-list-screenshots.png)
 
 Stressed about packing? Forget essentials? Wish someone could just do it for you?
@@ -19,18 +24,18 @@ But wait, there's more!
   the agentic app handles the shopping for you! (Note: This demo simulates the 
   shopping bit. Sorry, you won’t be getting any Hawaiian shirts.)
 
-## Getting Started
+# Getting Started
 
-### Dev Environment
+## Dev Environment
 - [Flutter](https://docs.flutter.dev/get-started/install) for your target platforms
 - [Genkit](https://firebase.google.com/docs/genkit/get-started)
 
-### API Keys
+## API Keys
 - [Gemini API Key](https://ai.google.dev/gemini-api/docs/api-key) – For accessing the Gemini model.
 - [OpenWeather API Key](https://openweathermap.org/appid) – For LatLong and Weather tools.
 - [Unsplash Developer Access Key](https://unsplash.com/developers) – For the Unsplash Image tool.
 
-### Running the app
+## Running the app
 
 1. Set API keys as environment variables:
 ```
@@ -39,13 +44,13 @@ export OPENWEATHER_API_KEY=<your-api-key>
 export UNSPLASH_ACCESS_KEY=<your-access-key> 
 ```
 
-#### Start Genkit app
+### Start Genkit app
 
 2. Run: `cd genkit_backend/ && npm install` to install the Genkit project dependencies
 
 3. Run: `npx genkit start -o -- node src/app.js` to start the Genkit app. 
 
-#### Start Flutter app
+### Start Flutter app
 
 4. In a separate terminal window, run: `cd flutter_frontend/ && flutter pub get` 
 to install the Flutter app dependencies.
@@ -57,7 +62,7 @@ to install the Flutter app dependencies.
    
 Enter your trip and see what outfits the app suggest for you! 
 
-## Things to check out
+# Things to check out
 - Genkit Developer UI: Once your Genkit app is running, you can test each
 individual Flow, Tool, and even prompt from within the Genkit Developer UI, 
 which is available at `http://localhost:4000`.
@@ -65,11 +70,11 @@ which is available at `http://localhost:4000`.
 - You can also reach the Genkit app server directly (like the Flutter app) using curl,
 Postman, etc. @ `http://localhost:2222`. (Port configured in `genkit_backend/app.js`)
 
-## App Architecture
+# App Architecture
 ![My Packing List – Flutter & Genkit Architecture Diagram](README/my-packing-list-architecture-diagram-final.png)
 
-### Flutter App (Frontend)
-#### Screens
+## Flutter App (Frontend)
+### Screens
 - `TravelerFormScreen`: This screen collects the user's trip destination, 
 duration, and preferences to initiate the packing list generation.
 - `PackingList Screen`: This screen displays the generated packing checklist 
@@ -78,22 +83,22 @@ items and quantities based on the trip details received from the backend.
 including items purchased, prices, and the total cost, after the “agent” 
 completes a purchase on the user’s behalf. 
 
-#### Data Models
+### Data Models
 Each model represents data in the app, these tend to match up to a particular screen
 - `TravelerFormModel`: The model used to store data relating to the user’s upcoming trip. 
 - `ItemModel`: A model representing an item that needs to be packed
 - `PackingListModel`: A model that represents a user's packing list, including a list of Items
 - `OrderConfirmationModel`: A model that represents an order confirmation
 
-#### Connecting to Genkit
+### Connecting to Genkit
 `Genkit` is a utility class that manages and abstracts away the Genkit Flow 
 (network) calls to the Genkit backend server. It also handles parsing of the 
 responses. So unless there’s an error, these methods return an object such as 
 OrderConfirmationModel and PackingListModel which can be used immediately by 
 the app.
 
-### Genkit (Backend)
-#### Flows
+## Genkit (Backend)
+### Flows
 There are two flows included in the starter kit. You can add additional flows or 
 adjust the prompts that are already there for each flow:
 - `PackingHelperFlow`: This flow receives JSON from the Flutter app containing the 
@@ -109,7 +114,7 @@ confirmation including total price and details of each ordered item (name,
 quantity, individual price, total price for that item). The Flutter app uses 
 this to display the order confirmation screen.
 
-#### Tools
+### Tools
 There are 4 tools included in the Genkit & Flutter starter kit. Each tool is 
 entirely modular, you can modify these however you see fit for each use case:
 - `GetLatLong`: Takes the location string, such as "Honolulu" and calls a 
@@ -120,7 +125,7 @@ API to get the forecast ("mostly sunny... 70-80 degrees")
 - `ShoppingTool`: Makes a call to a hypothetical e-commerce/shopping API where it 
 finds the product, and simulates placing an order for that product.
 
-## Project Breakdown
+# Project Breakdown
 ```
 genkit_flutter_agentic_app/
 ├── flutter_frontend/
@@ -169,7 +174,7 @@ genkit_flutter_agentic_app/
     └── package.json              # Node dependencies
 ```
 
-### Looking for more Flutter & Genkit?
+## Looking for more Flutter & Genkit?
 Check out these sample projects:
 - [Compass AI Travel Planning App](https://github.com/FirebaseExtended/compass-ai-travel-planning-sample-flutter/tree/main): This is a travel demo using Flutter, Genkit, and Firebase Data Connect to find ideal itineraries from a database of travel plans.
 - [Green Thumb App](https://github.com/flutter/demos/tree/main/green_thumb_cloud_next_25): The Flutter Fix-in Warehouse sample demonstrates using Flutter and Genkit together to build a generative AI with the following features: server-side tool calls, server-to-client tool calls (aka Genkit interrupts), Retrieve Augmented Generation (aka RAG)
