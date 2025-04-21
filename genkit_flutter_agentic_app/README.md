@@ -138,7 +138,7 @@ genkit_flutter_agentic_app/
 │       │   │   ├── go_home_button.dart
 │       │   │   ├── order_confirmation_screen.dart # Main screen displaying the Order Confirmation
 │       │   │   └── receipt.dart
-│       │   ├── packing_list/     # Display the packing list.
+│       │   ├── packing_list/     # Display the packing list
 │       │   │   ├── cta_button.dart
 │       │   │   ├── hero_app_bar.dart
 │       │   │   ├── item_tile.dart
