@@ -20,7 +20,8 @@ class TravelerFormModel extends ChangeNotifier {
 
   /// Validates the form fields.
   ///
-  /// Checks if the location is provided and if the length of stay is positive.
+  /// Checks if the location is provided and if the length of stay is positive
+  /// AND less than 16, due to OpenWeather API limitations.
   /// Returns a list of error messages; an empty list indicates the form is valid.
   List<String> validate() {
     List<String> errors = [];
@@ -35,6 +36,7 @@ class TravelerFormModel extends ChangeNotifier {
       );
     }
 
+    // OpenWeather API only has forecast data for up to 16 days out.
     if (lengthOfStay > 16) {
       errors.add(
         'We can\'t get the weather forecast that far out! Please shorten the trip length.',
