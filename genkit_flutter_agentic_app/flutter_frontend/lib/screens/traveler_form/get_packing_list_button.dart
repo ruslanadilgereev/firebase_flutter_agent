@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../settings/styles.dart';
 
+/// A styled [ElevatedButton] with an icon and text ("Get my packing list").
+///
+/// This button is used at the end of the traveler input form.
+/// When pressed, it executes the provided [onPressed] callback, which
+/// contains the logic to validate the form input and initiate the
+/// process of fetching the packing list.
 class GetPackingListButton extends StatelessWidget {
   const GetPackingListButton({required this.onPressed, super.key});
 
+  /// The [onPressed] callback is required and defines the action to perform
+  /// when the button is tapped.
   final VoidCallback onPressed;
 
   @override

@@ -8,6 +8,18 @@ import '../components.dart';
 import './get_packing_list_button.dart';
 import './input_widgets.dart';
 
+/// A screen that presents a form for the user to input their travel details.
+///
+/// This screen collects the destination, trip duration, and any special preferences
+/// using dedicated input widgets ([LocationInput], [TripLengthInput], [PreferencesInput]).
+/// It uses a [TravelerFormModel] (accessed via Provider) to manage the form's state.
+///
+/// Upon submission via the [GetPackingListButton], it validates the input,
+/// shows a loading indicator, calls the backend service (via [PackingListModel.load])
+/// to fetch packing list suggestions, and then navigates to the [PackingListScreen]
+/// on success, passing the fetched data. It also handles potential errors during
+/// the data fetching process by displaying a [SnackBar].
+///
 class TravelerFormScreen extends StatefulWidget {
   const TravelerFormScreen({super.key});
 
@@ -24,8 +36,8 @@ class _TravelerFormScreenState extends State<TravelerFormScreen> {
   @override
   void initState() {
     super.initState();
-    // If the user hits "back" from the packing list page, restore existing query
-    _locationController.text = context.read<TravelerFormModel>().location;
+    // Pre-populates the form fields if the user navigates back from the
+    // packing list screen, retrieving existing data from the TravelerFormModel.    _locationController.text = context.read<TravelerFormModel>().location;
     if (context.read<TravelerFormModel>().lengthOfStay != 0) {
       _lengthOfStayController.text =
           context.read<TravelerFormModel>().lengthOfStay.toString();
@@ -33,6 +45,11 @@ class _TravelerFormScreenState extends State<TravelerFormScreen> {
     _preferencesController.text = context.read<TravelerFormModel>().preferences;
   }
 
+  /// Validates the form, fetches the packing list from the backend,
+  /// and navigates to the [PackingListScreen].
+  //
+  /// Shows a loading indicator during the fetch and displays error messages
+  /// via [SnackBar] if validation fails or the fetch encounters an error.
   void getPackingList(BuildContext context) async {
     TravelerFormModel form = context.read<TravelerFormModel>();
 
@@ -42,7 +59,6 @@ class _TravelerFormScreenState extends State<TravelerFormScreen> {
     // If there's errors in the form, alert the user and do not proceed.
     if (errors.isNotEmpty) {
       String errorMessage = errors.join('\n');
-
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(errorMessage)));
@@ -79,7 +95,6 @@ class _TravelerFormScreenState extends State<TravelerFormScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Something went wrong: ${e.toString()}')),
       );
-      return;
     } finally {
       setState(() {
         _loading = false;
@@ -88,12 +103,22 @@ class _TravelerFormScreenState extends State<TravelerFormScreen> {
   }
 
   @override
+  void dispose() {
+    // Dispose controllers when the widget is removed from the tree to free resources.
+    _locationController.dispose();
+    _lengthOfStayController.dispose();
+    _preferencesController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: MyPackingListTitle(), centerTitle: true),
       body: BodyWhitespace(
         child:
-            _loading // If loading show the Progress indicator, otherwise show the form
+            _loading
+                // Conditionally display a loading indicator or the form.
                 ? Center(child: CircularProgressIndicator())
                 : Column(
                   children: [
