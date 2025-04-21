@@ -133,7 +133,7 @@ genkit_flutter_agentic_app/
 │       │   ├── order_confirmation_model.dart
 │       │   └── traveler_form_model.dart
 │       ├── screens/              # All of the screens in the app
-│       │   ├── components.dart   # Reusable UI components used across screens
+│       │   ├── components.dart
 │       │   ├── order_confirmation/ # Components for the order confirmation screen
 │       │   │   ├── go_home_button.dart
 │       │   │   ├── order_confirmation_screen.dart # Main screen displaying the Order Confirmation
@@ -147,10 +147,10 @@ genkit_flutter_agentic_app/
 │       │   │   ├── get_packing_list_button.dart
 │       │   │   ├── input_widgets.dart
 │       │       └── traveler_form_screen.dart # Main menu screen for collecting trip details
-│       ├── settings/             # Application-wide settings and configurations
+│       ├── settings/
 │       │   ├── config.dart       # Configure Genkit Server endpoint
-│       │   ├── styles.dart       # Shared text styles and sizing constants
-│       │   └── theme.dart        # Application theme definitions
+│       │   ├── styles.dart
+│       │   └── theme.dart
 │       ├── main.dart             # Flutter client app's main entrypoint
 │       └── genkit.dart           # Utility class for interacting with the Genkit app
 └── genkit_backend/
@@ -159,13 +159,13 @@ genkit_flutter_agentic_app/
     │   ├── app.js                # Genkit app server's entrypoint (Express)
     │   ├── config.js             # Pulls API keys from environment variables
     │   ├── tools/                # Tools (functions callable by the AI model)
-    │   │   ├── latlong.js        # Get latitude/longitude from a location name
-    │   │   ├── shopping.js       # Simulate purchasing items
-    │   │   ├── unsplash.js       # Fetch images from Unsplash
-    │   │   └── weather.js        # Get weather forecast using latitude/longitude
+    │   │   ├── latlong.js
+    │   │   ├── shopping.js
+    │   │   ├── unsplash.js
+    │   │   └── weather.js 
     │   └── flows/                # Flow definitions
-    │       ├── purchase.js       # Flow for handling item purchases
-    │       └── packingHelper.js  # Flow for generating the packing list
+    │       ├── purchase.js
+    │       └── packingHelper.js 
     └── package.json              # Node dependencies
 ```
 
