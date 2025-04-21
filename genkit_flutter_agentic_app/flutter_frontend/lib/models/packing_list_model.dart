@@ -5,6 +5,12 @@ import 'dart:convert';
 import '../genkit.dart';
 import '../models/order_confirmation_model.dart';
 
+/// Manages the state for the packing list screen.
+///
+/// Holds information about the trip destination, duration, weather,
+/// a generated list of [Item]s to pack, and tracks the packing progress
+/// ([totalQuantity] vs [totalPacked]). It uses [ChangeNotifier] to notify
+/// listeners (like the UI) when the packing state changes.
 class PackingListModel extends ChangeNotifier {
   String locationCity;
   String locationState;
@@ -26,6 +32,11 @@ class PackingListModel extends ChangeNotifier {
     this.totalPacked = 0,
   });
 
+  /// Asynchronously loads packing list data by calling the Genkit API.
+  ///
+  /// Takes the location, stay duration, and user preferences as input.
+  /// Returns a future that completes with a [PackingListModel] instance.
+  /// Throws an exception if the API call fails.
   static Future<PackingListModel> load(
     String locationName,
     int lengthOfStay,
@@ -116,16 +127,25 @@ class PackingListModel extends ChangeNotifier {
     );
   }
 
-  Future<OrderConfirmationModel?> orderRemaining(BuildContext context) async {
+  /// Initiates an order for items that have not yet been packed.
+  ///
+  /// Filters the [items] list for unpacked items and calls the Genkit API
+  /// to place an order. Returns a future that completes with an
+  /// [OrderConfirmationModel] if the order is successful and items were ordered,
+  /// otherwise returns null.
+  Future<OrderConfirmationModel?> orderRemaining() async {
     var unpackedItems = items.where((item) => !item.packed).toList();
-
-    var orderConfirmation = await Genkit.purchaseFlow(unpackedItems);
-    if (unpackedItems.isEmpty || !context.mounted) {
+    if (unpackedItems.isEmpty) {
       return null;
     }
+    var orderConfirmation = await Genkit.purchaseFlow(unpackedItems);
     return orderConfirmation;
   }
 
+  /// Toggles the packed status of an item at the specified [index].
+  ///
+  /// Updates the [totalPacked] count based on the item's quantity and
+  /// notifies listeners of the change.
   void togglePacked(int index) {
     // Don't have any items
     if (items.isEmpty) {

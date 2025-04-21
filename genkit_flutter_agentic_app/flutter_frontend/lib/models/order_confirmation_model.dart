@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+/// Represents the confirmation details of an order placed for remaining unpacked items.
+///
+/// Contains a list of the [OrderItem]s that were ordered and the [totalPrice].
 class OrderConfirmationModel {
   List<OrderItem> items;
   double totalPrice;
@@ -16,11 +19,10 @@ class OrderConfirmationModel {
 
     var result = decodedBody['result'] as Map<String, dynamic>;
 
-    // Get total price
     if (result['totalPrice'] is! double) {
-      print(result['totalPrice']);
       throw Exception('Invalid response format: "totalPrice" is not a double.');
     }
+
     var totalPrice = result['totalPrice'] as double;
 
     var itemsContent = result['orderedItems'] as List<dynamic>;
@@ -42,6 +44,10 @@ class OrderConfirmationModel {
   }
 }
 
+/// Represents a single item within a confirmed order.
+///
+/// Contains the item's [name], ordered [quantity], individual [price],
+/// and the calculated [totalPrice] for that line item (quantity * price).
 class OrderItem {
   String name;
   int quantity;
