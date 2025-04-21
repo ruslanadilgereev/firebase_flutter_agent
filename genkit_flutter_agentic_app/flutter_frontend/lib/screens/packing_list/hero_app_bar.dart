@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import '../../settings/styles.dart';
 
+/// A custom SliverAppBar that displays a background image with a title.
+///
+/// This app bar is designed to be used within a [NestedScrollView]. It features
+/// an image loaded from [imageUrl] that fills the expanded space. As the user
+/// scrolls, the app bar collapses to a standard height, pinning the [title]
+/// widget to the top. A gradient overlay ensures the title is readable against
+/// the background image when expanded.
 class HeroAppBar extends StatelessWidget {
   const HeroAppBar({required this.title, required this.imageUrl, super.key});
 
+  /// The widget to display as the title, which remains visible when collapsed.
   final Widget title;
+
+  /// The URL of the image to display in the expanded background.
   final String imageUrl;
 
   @override
@@ -38,6 +48,7 @@ class HeroAppBar extends StatelessWidget {
                     ),
                   );
                 },
+                // Shows an error message if the image fails to load.
                 errorBuilder: (
                   BuildContext context,
                   Object exception,
@@ -49,6 +60,7 @@ class HeroAppBar extends StatelessWidget {
                 imageUrl,
               ),
             ),
+            // Container for the gradient overlay.
             Container(
               height: 350,
               width: double.infinity,

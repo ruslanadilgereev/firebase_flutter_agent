@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../settings/styles.dart';
 
+/// Defines common, reusable UI widgets used throughout the application.
+///
+/// This includes widgets for titles (`MyPackingListTitle`, `PageTitle`),
+/// subtitles (`PageSubtitle`), paragraph text (`ParagraphText`), and layout
+/// helpers like consistent padding (`BodyWhitespace`).
+
 /// A reusable widget that displays the application's main title, "My Packing List".
 ///
 /// Often used in the [AppBar] widget.
