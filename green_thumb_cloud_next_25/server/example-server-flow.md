@@ -60,7 +60,7 @@
 
 Notice the lack of a "ref" property on the "toolResponse". Gemini doesn't
 provide a "ref" as of 2025-03-05, but it should in the future. If the ref is
-provided in the source toolReponse, make sure to include it in the response.
+provided in the source `toolResponse`, make sure to include it in the response.
 
 ```json
 {
