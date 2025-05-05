@@ -3,15 +3,15 @@ import { z } from 'genkit';
 
 import { OPEN_WEATHER_API_KEY } from '../config.js';
 
-// Makes an API Call to the OpenWeather 16 day / daily forecast API
-// Returns an array of daily forcast information such as high, low, humidity, and weather condition.
-// https://openweathermap.org/forecast16
+// Makes an API Call to the OpenWeather 5 day weather forecast API
+// Returns weather forecast data for 5 days with 3-hour step, including high, low, humidity, and weather condition.
+// https://openweathermap.org/forecast5
 async function getWeather(lat, lon, days) {
     if (!OPEN_WEATHER_API_KEY) {
         throw new Error('OpenWeather API Key is missing. Please set the OPEN_WEATHER_API_KEY environment variable.');
     }
 
-    const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${days}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=${days}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`;
 
     try {
         const response = await fetch(url);
@@ -19,7 +19,7 @@ async function getWeather(lat, lon, days) {
         const weatherResponse = JSON.stringify(data);
 
         const { text } = await ai.generate(`
-            Summarize this weather forecast data with a description for each day in the following format:
+            Summarize this weather forecast data with a conversational language description for each day in the following format:
             Here is the JSON data: 
             <start of JSON data>
             ${weatherResponse}
@@ -28,33 +28,37 @@ async function getWeather(lat, lon, days) {
             Here is a description of the JSON data format: 
             <start JSON data format descriptions>
             list
-            list.dt Time of data forecasted
-            list.temp
-            list.temp.day Temperature at 12:00 local time. Unit: Fahrenheit
-            list.temp.min Min daily temperature. Unit: Fahrenheit
-            list.temp.max Max daily temperature. Unit: Fahrenheit
-            list.temp.night Temperature at 00:00 local time. Unit: Fahrenheit
-            list.temp.eve Temperature at 18:00 local time. Unit: Fahrenheit
-            list.temp.morn Ttemperature at 06:00 local time. Unit: Fahrenheit
-            list.feels_like
-            list.feels_like.day Temperature at 12:00 local time.This temperature parameter accounts for the human perception of weather. Unit: Fahrenheit
-            list.feels_like.night Temperature at 00:00 local time.This temperature parameter accounts for the human perception of weather. Unit: Fahrenheit
-            list.feels_like.eve Temperature at 18:00 local time.This temperature parameter accounts for the human perception of weather. Unit: Fahrenheit
-            list.feels_like.morn Temperature at 06:00 local time. This temperature parameter accounts for the human perception of weather. Unit: Fahrenheit
-            list.pressure Atmospheric pressure on the sea level, hPa
-            list.humidity Humidity, %
-            list.weather (more info Weather condition codes)
-            list.weather.id Weather condition id
-            list.weather.main Group of weather parameters (Rain, Snow, Clouds etc.)
-            list.weather.description Weather condition within the group. Please find more here. You can get the output in your language. Learn more
-            list.weather.icon Weather icon id
-            list.speed Maximum wind speed for the day. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
-            list.deg Wind direction relevant to the maximum wind speed, degrees (meteorological)
-            list.gust Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
-            list.clouds Cloudiness, %
-            list.rain Precipitation volume, mm. Please note that only mm as units of measurement are available for this parameter
-            list.snow Snow volume, mm. Please note that only mm as units of measurement are available for this parameter
-            list.pop Probability of precipitation. The values of the parameter vary between 0 and 1, where 0 is equal to 0%, 1 is equal to 100%
+            list.dt Time of data forecasted, unix, UTC
+            list.main
+                list.main.temp Temperature. Unit Fahrenheit
+                list.main.feels_like This temperature parameter accounts for the human perception of weather. Unit Fahrenheit
+                list.main.temp_min Minimum temperature at the moment of calculation. Unit Fahrenheit
+                list.main.temp_max Maximum temperature at the moment of calculation. Unit Fahrenheit
+                list.main.pressure Atmospheric pressure on the sea level by default, hPa
+                list.main.sea_level Atmospheric pressure on the sea level, hPa
+                list.main.grnd_level Atmospheric pressure on the ground level, hPa
+                list.main.humidity Humidity, %
+                list.main.temp_kf Internal parameter
+                list.weather
+                    list.weather.id Weather condition id
+                    list.weather.main Group of weather parameters (Rain, Snow, Clouds etc.)
+                    list.weather.description Weather condition within the group.
+                    list.weather.icon Weather icon id
+                list.clouds
+                    list.clouds.all Cloudiness, %
+                list.wind
+                    list.wind.speed Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
+                    list.wind.deg Wind direction, degrees (meteorological)
+                    list.wind.gust Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
+                list.visibility Average visibility, metres. The maximum value of the visibility is 10km
+                list.pop Probability of precipitation. The values of the parameter vary between 0 and 1, where 0 is equal to 0%, 1 is equal to 100%
+                list.rain
+                    list.rain.3h Rain volume for last 3 hours, mm.
+                list.snow
+                    list.snow.3h Snow volume for last 3 hours.
+                list.sys
+                    list.sys.pod Part of the day (n - night, d - day)
+                list.dt_txt Time of data forecasted, ISO, UTC
             </end JSON data format descriptions>
         `);
 

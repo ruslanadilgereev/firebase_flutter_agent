@@ -36,8 +36,8 @@ class TravelerFormModel extends ChangeNotifier {
       );
     }
 
-    // OpenWeather API only has forecast data for up to 16 days out.
-    if (lengthOfStay > 16) {
+    // OpenWeather API only has forecast data for up to 5 days out.
+    if (lengthOfStay > 5) {
       errors.add(
         'We can\'t get the weather forecast that far out! Please shorten the trip length.',
       );
