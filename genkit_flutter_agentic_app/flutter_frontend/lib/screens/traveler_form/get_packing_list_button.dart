@@ -17,7 +17,7 @@ class GetPackingListButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.all(Size.l),
+      padding: EdgeInsets.all(Size.l),
       child: ElevatedButton.icon(
         style: ButtonStyle(
           padding: WidgetStatePropertyAll(
