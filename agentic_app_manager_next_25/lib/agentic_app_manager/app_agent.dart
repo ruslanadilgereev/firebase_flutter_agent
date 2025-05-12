@@ -53,12 +53,11 @@ class AppAgent {
   }
 
   Future<bool> askConfirmation(BuildContext context, String question) async {
-    AppState manager = context.read<AppState>();
     var response = await showDialog<bool>(
       context: context,
       builder: (context) {
         return Theme(
-          data: manager.appTheme,
+          data: context.read<AppState>().appTheme,
           child: AlertDialog(
             title: Text('App Manager'),
             content: Text(question),
@@ -102,7 +101,7 @@ class AppAgent {
     return null;
   }
 
-  Future<Null> setFontFamilyCall(
+  Future<void> setFontFamilyCall(
     BuildContext context,
     FunctionCall functionCall,
   ) async {
@@ -115,10 +114,7 @@ class AppAgent {
     return;
   }
 
-  Future<Null> setFontSizeFactorCall(
-    BuildContext context,
-    FunctionCall functionCall,
-  ) async {
+  void setFontSizeFactorCall(BuildContext context, FunctionCall functionCall) {
     var fontSizeFactor = functionCall.args['fontSizeFactor']! as num;
 
     if (context.mounted) {
@@ -128,10 +124,7 @@ class AppAgent {
     return;
   }
 
-  Future<Null> setAppColorCall(
-    BuildContext context,
-    FunctionCall functionCall,
-  ) async {
+  void setAppColorCall(BuildContext context, FunctionCall functionCall) async {
     int red = functionCall.args['red']! as int;
     int green = functionCall.args['green']! as int;
     int blue = functionCall.args['blue']! as int;
@@ -141,8 +134,6 @@ class AppAgent {
     if (context.mounted) {
       context.read<AppState>().setAppColor(newSeedColor);
     }
-
-    return;
   }
 
   Future<String> getDeviceInfoCall() async {
@@ -155,12 +146,12 @@ class AppAgent {
     return 'Battery Info: ${batteryInfo.toString()}';
   }
 
-  Future<Null> checkFunctionCalls(
+  void checkFunctionCalls(
     BuildContext context,
     Iterable<FunctionCall> functionCalls,
   ) async {
     for (var functionCall in functionCalls) {
-      print(functionCalls.map((fc) => fc.name));
+      debugPrint(functionCalls.map((fc) => fc.name).toString());
       GenerateContentResponse? response;
       switch (functionCall.name) {
         case 'askConfirmation':
@@ -168,9 +159,9 @@ class AppAgent {
         case 'setFontFamily':
           await setFontFamilyCall(context, functionCall);
         case 'setFontSizeFactor':
-          await setFontSizeFactorCall(context, functionCall);
+          setFontSizeFactorCall(context, functionCall);
         case 'setAppColor':
-          await setAppColorCall(context, functionCall);
+          setAppColorCall(context, functionCall);
         case 'getDeviceInfo':
           var deviceInfo = await getDeviceInfoCall();
           response = await chat.sendMessage(
