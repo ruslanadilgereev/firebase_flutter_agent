@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
+import 'dart:math';
 
 import 'data.dart';
+import '../image_generator.dart';
 
 class MyMailScreen extends StatefulWidget {
   const MyMailScreen({super.key});
@@ -11,6 +14,25 @@ class MyMailScreen extends StatefulWidget {
 
 class _MyMailScreenState extends State<MyMailScreen> {
   Set<String> _selected = {'Inbox'};
+  AIImageGenerator imageGenerator = AIImageGenerator();
+  List<Uint8List> profilePics = [];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => generateProfilePics());
+  }
+
+  void generateProfilePics() async {
+    List<Uint8List> images = await imageGenerator.generateImages(
+      'Please create an online Penguin game-style single headshot'
+      'image of a cartoon penguin in various occupational outfits.',
+    );
+
+    setState(() {
+      profilePics = images;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +104,22 @@ class _MyMailScreenState extends State<MyMailScreen> {
                   return ListTile(
                     isThreeLine: true,
                     leading: CircleAvatar(
-                      child: Text(
-                        email.fromFirstName[0].toUpperCase() +
-                            email.fromLastName[0].toUpperCase(),
-                      ),
+                      radius: 32,
+                      backgroundImage:
+                          profilePics.isNotEmpty
+                              ? MemoryImage(
+                                profilePics[Random().nextInt(
+                                  profilePics.length,
+                                )],
+                              )
+                              : null,
+                      child:
+                          profilePics.isEmpty
+                              ? Text(
+                                email.fromFirstName[0].toUpperCase() +
+                                    email.fromLastName[0].toUpperCase(),
+                              )
+                              : null,
                     ),
                     title: Text(
                       '${email.fromFirstName} ${email.fromLastName}',
