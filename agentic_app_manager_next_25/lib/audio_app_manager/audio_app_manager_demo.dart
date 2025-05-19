@@ -101,9 +101,14 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
     });
   }
 
-  ///
+  @override
+  void dispose() {
+    _recorder.dispose();
+    _stopController.close();
+    super.dispose();
+  }
+
   /// AUDIO INPUT & OUTPUT
-  ///
   Future<void> _initializeAudio() async {
     try {
       checkMicPermission();
@@ -124,8 +129,9 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
     setState(() {
       _settingUpSession = true;
     });
+
     // Start the live session
-    await _toggleLiveSession();
+    await _toggleLiveGeminiSession();
 
     // Start recording audio input stream
     inputStream = await startRecordingStream();
@@ -137,7 +143,7 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
     });
     _session.sendMediaStream(inlineDataStream);
 
-    // Start playing incoming audio output stream
+    // Start playing an output audio stream
     var audioSource = SoLoud.instance.setBufferStream(
       bufferingType: BufferingType.released,
       bufferingTimeNeeds: 0,
@@ -169,7 +175,7 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
     await SoLoud.instance.stop(handle);
 
     // End the live session
-    await _toggleLiveSession();
+    await _toggleLiveGeminiSession();
 
     setState(() {
       _conversationActive = false;
@@ -208,7 +214,7 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
   }
 
   /// VERTEX AI IN FIREBASE
-  Future<void> _toggleLiveSession() async {
+  Future<void> _toggleLiveGeminiSession() async {
     setState(() {
       _settingUpSession = true;
     });
@@ -253,11 +259,6 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
         log(e.toString());
         break;
       }
-
-      // Optionally add a delay before restarting, if needed
-      await Future.delayed(
-        const Duration(milliseconds: 100),
-      ); // Small delay to prevent tight loops
     }
   }
 
