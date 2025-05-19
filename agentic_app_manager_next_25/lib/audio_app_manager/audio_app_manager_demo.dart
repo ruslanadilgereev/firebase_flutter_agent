@@ -8,6 +8,8 @@ import 'package:flutter_soloud/flutter_soloud.dart';
 import 'dart:typed_data';
 import '../fake_mail_screen/mail_screen.dart';
 import '../agentic_app_manager/app_agent.dart';
+import '../utils/utils.dart';
+import '../agentic_app_manager/tools.dart';
 
 import '../app_state.dart';
 
@@ -69,7 +71,15 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
           speechConfig: SpeechConfig(voiceName: 'fenrir'),
           responseModalities: [ResponseModalities.audio],
         ),
+        tools: [
+          Tool.functionDeclarations([
+            fontFamilyTool,
+            fontSizeFactorTool,
+            appThemeColorTool,
+          ]),
+        ],
       );
+
   late LiveSession _session; // Gemini Live Session
   bool _settingUpSession = false; // Session is getting set up
   bool _sessionOpened = false; // Session is open and ready to go.
@@ -111,6 +121,9 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
   }
 
   Future<void> startConversation() async {
+    setState(() {
+      _settingUpSession = true;
+    });
     // Start the live session
     await _toggleLiveSession();
 
@@ -144,6 +157,7 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
 
     setState(() {
       _conversationActive = true;
+      _settingUpSession = false;
     });
   }
 
@@ -223,7 +237,6 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
   }) async {
     bool shouldContinue = true;
 
-    //listen to the stop signal stream
     stopSignal.stream.listen((stop) {
       if (stop) {
         shouldContinue = false;
@@ -286,7 +299,21 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
   Future<void> _handleLiveServerToolCall(LiveServerToolCall response) async {
     final functionCalls = response.functionCalls;
     if (functionCalls != null && functionCalls.isNotEmpty) {
-      log("Gemini made a function call!");
+      debugPrint(functionCalls.map((fc) => fc.name).toString());
+      for (var functionCall in functionCalls) {
+        switch (functionCall.name) {
+          case 'setFontFamily':
+            setFontFamilyCall(context, functionCall);
+          case 'setFontSizeFactor':
+            setFontSizeFactorCall(context, functionCall);
+          case 'setAppColor':
+            setAppColorCall(context, functionCall);
+          default:
+            throw UnimplementedError(
+              'Function not declared to the model: ${functionCall.name}',
+            );
+        }
+      }
     }
   }
 
@@ -316,13 +343,15 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
         actions: [
-          IconButton(
-            onPressed: _audioReady ? toggleConversation : null,
-            icon:
-                _conversationActive
-                    ? Icon(Icons.phone_disabled, color: Colors.red)
-                    : Icon(Icons.phone, color: Colors.green),
-          ),
+          _settingUpSession
+              ? CircularProgressIndicator(padding: EdgeInsets.all(8))
+              : IconButton(
+                onPressed: _audioReady ? toggleConversation : null,
+                icon:
+                    _conversationActive
+                        ? Icon(Icons.phone_disabled, color: Colors.red)
+                        : Icon(Icons.phone, color: Colors.green),
+              ),
         ],
       ),
       body: MyMailScreen(),

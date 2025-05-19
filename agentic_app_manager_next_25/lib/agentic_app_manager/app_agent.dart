@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 import 'tools.dart';
-import 'device_helper.dart';
 import '../app_state.dart';
+import '../utils/utils.dart';
 
 class AppAgent {
   final gemini = FirebaseVertexAI.instance.generativeModel(
@@ -101,51 +101,6 @@ class AppAgent {
     return null;
   }
 
-  Future<void> setFontFamilyCall(
-    BuildContext context,
-    FunctionCall functionCall,
-  ) async {
-    var fontFamily = functionCall.args['fontFamily']! as String;
-
-    if (context.mounted) {
-      context.read<AppState>().setFontFamily(fontFamily);
-    }
-
-    return;
-  }
-
-  void setFontSizeFactorCall(BuildContext context, FunctionCall functionCall) {
-    var fontSizeFactor = functionCall.args['fontSizeFactor']! as num;
-
-    if (context.mounted) {
-      context.read<AppState>().setFontSizeFactor(fontSizeFactor.toDouble());
-    }
-
-    return;
-  }
-
-  void setAppColorCall(BuildContext context, FunctionCall functionCall) async {
-    int red = functionCall.args['red']! as int;
-    int green = functionCall.args['green']! as int;
-    int blue = functionCall.args['blue']! as int;
-
-    Color newSeedColor = Color.fromRGBO(red, green, blue, 1);
-
-    if (context.mounted) {
-      context.read<AppState>().setAppColor(newSeedColor);
-    }
-  }
-
-  Future<String> getDeviceInfoCall() async {
-    var deviceInfo = await DeviceHelper.getDeviceInfo();
-    return 'Device Info: ${deviceInfo.toString()}';
-  }
-
-  Future<String> getBatteryInfoCall() async {
-    var batteryInfo = await DeviceHelper.getBatteryInfo();
-    return 'Battery Info: ${batteryInfo.toString()}';
-  }
-
   void checkFunctionCalls(
     BuildContext context,
     Iterable<FunctionCall> functionCalls,
@@ -157,7 +112,7 @@ class AppAgent {
         case 'askConfirmation':
           response = await askConfirmationCall(context, functionCall);
         case 'setFontFamily':
-          await setFontFamilyCall(context, functionCall);
+          setFontFamilyCall(context, functionCall);
         case 'setFontSizeFactor':
           setFontSizeFactorCall(context, functionCall);
         case 'setAppColor':
