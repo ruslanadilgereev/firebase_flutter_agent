@@ -133,7 +133,6 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
 
     // Wrap input stream audio bytes in InlineDataPart and send to Gemini
     Stream<InlineDataPart> inlineDataStream = inputStream.map((data) {
-      print('recorded audio');
       return InlineDataPart('audio/pcm', data);
     });
     _session.sendMediaStream(inlineDataStream);
@@ -320,7 +319,6 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
   Future<void> _handleInlineDataPart(InlineDataPart part) async {
     // If DataPart is audio, add data to the output audio stream
     if (part.mimeType.startsWith('audio')) {
-      print('audio part');
       var audioOutputSrc = audioSrc;
       if (audioOutputSrc != null) {
         SoLoud.instance.addAudioDataStream(audioOutputSrc, part.bytes);

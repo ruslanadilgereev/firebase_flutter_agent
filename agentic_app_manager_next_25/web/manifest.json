@@ -1,6 +1,6 @@
 {
-    "name": "agentic_app_manager_next_25",
-    "short_name": "agentic_app_manager_next_25",
+    "name": "agentic_app_manager",
+    "short_name": "agentic_app_manager",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
