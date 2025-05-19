@@ -1,4 +1,4 @@
-# agentic_app_manager_next_25
+# agentic_app_manager
 
 A new Flutter project.
 
