@@ -127,15 +127,9 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
 
     // Start playing incoming audio output stream
     var audioSource = SoLoud.instance.setBufferStream(
-      maxBufferSizeBytes:
-          1024 * 1024 * 10, // 10MB of max buffer (not allocated)
       bufferingType: BufferingType.released,
       bufferingTimeNeeds: 0,
       onBuffering: (isBuffering, handle, time) {
-        // When isBuffering==true, the stream is set to paused automatically till
-        // it reaches bufferingTimeNeeds of audio data or until setDataIsEnded is called
-        // or maxBufferSizeBytes is reached. When isBuffering==false, the playback stream
-        // is resumed.
         log('Buffering: $isBuffering, Time: $time');
       },
     );
@@ -188,10 +182,10 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
       androidConfig: AndroidRecordConfig(
         audioSource: AndroidAudioSource.voiceCommunication,
       ),
-      iosConfig: IosRecordConfig(categoryOptions: []),
+      iosConfig: IosRecordConfig(
+        categoryOptions: [IosAudioCategoryOption.defaultToSpeaker],
+      ),
     );
-    final devices = await _recorder.listInputDevices();
-    //print(devices.toString());
     var stream = await _recorder.startStream(recordConfig);
     return stream;
   }
@@ -200,11 +194,7 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
     await _recorder.stop();
   }
 
-  // Audio Output
-
-  ///
   /// VERTEX AI IN FIREBASE
-  ///
   Future<void> _toggleLiveSession() async {
     setState(() {
       _settingUpSession = true;
