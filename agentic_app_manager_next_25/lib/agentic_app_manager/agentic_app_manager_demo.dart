@@ -77,7 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: [
           IconButton(onPressed: submitFeedback, icon: Icon(Icons.bug_report)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.mic)),
         ],
       ),
       body: MyMailScreen(),
