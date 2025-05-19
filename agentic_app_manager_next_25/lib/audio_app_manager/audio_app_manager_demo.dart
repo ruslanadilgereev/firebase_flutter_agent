@@ -7,7 +7,6 @@ import 'package:record/record.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
 import 'dart:typed_data';
 import '../fake_mail_screen/mail_screen.dart';
-import '../agentic_app_manager/app_agent.dart';
 import '../utils/utils.dart';
 import '../agentic_app_manager/tools.dart';
 
