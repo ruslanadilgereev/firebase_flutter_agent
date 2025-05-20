@@ -72,6 +72,6 @@ See code in [`lib/audio_app_manager/audio_app_manager_demo.dart`](https://github
 
 ## Resources
 - [[Codelab] Build a Gemini powered Flutter app with Flutter & Vertex AI in Firebase](https://codelabs.developers.google.com/codelabs/flutter-gemini-colorist)
-- [Demo App] [AgenticColorist](https://github.com/flutter/demos/tree/main/vertex_ai_firebase_flutter_app): A Flutter application that explores LLM tooling interfaces by allowing users to describe colors in natural language. The app uses Gemini LLM to interpret descriptions and change the color of a displayed square by calling specialized color tools.
+- [Demo App] [Colorist](https://github.com/flutter/demos/tree/main/vertex_ai_firebase_flutter_app): A Flutter application that explores LLM tooling interfaces by allowing users to describe colors in natural language. The app uses Gemini LLM to interpret descriptions and change the color of a displayed square by calling specialized color tools.
 - [Vertex AI in Firebase docs](https://firebase.google.com/docs/vertex-ai)
 
