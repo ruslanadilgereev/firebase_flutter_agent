@@ -1,7 +1,7 @@
 # Agentic App Manager
 **Target Platforms:** iOS, Android, Web
 
-**Tech Stack:** Flutter(https://flutter.dev/) (frontend), [Firebase AI Logic](https://firebase.google.com/docs/ai-logic) (Gemini API in Vertex AI for the backend)
+**Tech Stack:** [Flutter](https://flutter.dev/) (frontend), [Firebase AI Logic](https://firebase.google.com/docs/ai-logic) (Gemini API in Vertex AI for the backend)
 
 ![Agentic App Manager – Firebase AI Model Constructors w/ Screenshots](README/AppScreenshots.png)
 
