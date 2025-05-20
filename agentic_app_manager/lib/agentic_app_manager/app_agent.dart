@@ -2,13 +2,13 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_vertexai/firebase_vertexai.dart';
-import 'tools.dart';
+import 'package:firebase_ai/firebase_ai.dart';
 import '../app_state.dart';
 import '../utils/utils.dart';
+import './tools.dart';
 
 class AppAgent {
-  final gemini = FirebaseVertexAI.instance.generativeModel(
+  final gemini = FirebaseAI.vertexAI().generativeModel(
     systemInstruction: Content.text('''
       You are a friendly and helpful app concierge. Your job is to help the user
       get the best, frictionless app experience. 

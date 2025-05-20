@@ -1,8 +1,8 @@
 import 'dart:typed_data';
-import 'package:firebase_vertexai/firebase_vertexai.dart';
+import 'package:firebase_ai/firebase_ai.dart';
 
 class AIImageGenerator {
-  ImagenModel model = FirebaseVertexAI.instance.imagenModel(
+  ImagenModel model = FirebaseAI.vertexAI().imagenModel(
     model: 'imagen-3.0-generate-002',
     generationConfig: ImagenGenerationConfig(numberOfImages: 4),
   );

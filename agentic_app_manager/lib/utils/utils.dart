@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_vertexai/firebase_vertexai.dart';
+import 'package:firebase_ai/firebase_ai.dart';
 import 'package:provider/provider.dart';
 import './device_helper.dart';
 import '../app_state.dart';

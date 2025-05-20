@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_vertexai/firebase_vertexai.dart';
+import 'package:firebase_ai/firebase_ai.dart';
 import 'dart:async';
 import 'dart:developer';
 import 'package:record/record.dart';
@@ -56,7 +56,7 @@ class AudioAgentApp extends StatefulWidget {
 }
 
 class _AudioAgentAppState extends State<AudioAgentApp> {
-  final LiveGenerativeModel _liveModel = FirebaseVertexAI.instance
+  final LiveGenerativeModel _liveModel = FirebaseAI.vertexAI()
       .liveGenerativeModel(
         systemInstruction: Content.text('''
       You are a friendly and helpful app concierge. Your job is to help the user
