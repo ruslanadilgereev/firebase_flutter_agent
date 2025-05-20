@@ -1,12 +1,12 @@
 # Agentic App Manager
 **Target Platforms:** iOS, Android, Web
 
-**Tech Stack:** Flutter (frontend), Vertex AI in Firebase (backend)
+**Tech Stack:** Flutter (frontend), Firebase AI Logic (Gemini API in Vertex AI for the backend)
 
 ![Agentic App Manager – Firebase AI Model Constructors w/ Screenshots](README/AppScreenshots.png)
 
 This app demonstrates how to build agents an agentic experience in a Flutter app 
-using Vertex AI in Firebase. 
+using Firebase AI Logic with the Gemini API in Vertex AI. 
 
 Users take and annotate screenshots, then add text to file feedback. An agent 
 then interprets the feedback. For example, if a user wants a different color 
@@ -27,7 +27,7 @@ workflows.
 
 ## Getting Started
 
-1. Follow [these instructions](https://firebase.google.com/docs/vertex-ai/get-started#dart) 
+1. Follow [these instructions](https://firebase.google.com/docs/ai-logic/get-started?&api=vertex#set-up-firebase) 
 to set up a Firebase project & connect the app to Firebase using `flutterfire configure`
 
 1. Run `flutter pub get` in the root of the project directory `agentic_app_manager` to
@@ -44,17 +44,21 @@ install the Flutter app dependencies
 audio streaming. 
 
 Click the icon in the top right corner "bug report" or "call" to initiate a 
-feedback session. 
+feedback session. You can file feedback about the app color, font size, or 
+typeface and the agent will have tools that it can use address the feedback. 
+
+In the default version of the app, you can also file feedback about something else
+in the app and it will offer to file a feedback report for you. 
 
 ## Implementation
-This demo showcases 3 different model constructors from Vertex AI in Firebase, each
+This demo showcases 3 different model constructors from Firebase AI, each
 supporting different model with different functionality functionality. 
 Here's a high-level overview:
 1. `GenerativeModel`: Multimodal input with text & images. Tool use as output.
 2. `ImagenModel`: Generate the email senders' profile picture images.
 3. `LiveGenerativeModel`: Live audio streaming input & output, with tool use.
 
-Check out [this table](https://firebase.google.com/docs/vertex-ai/models) for more on the various supported models & features.
+Check out [this table](https://firebase.google.com/docs/ai-logic/models) for more on the various supported models & features.
 
 ## Architecture
 
@@ -71,7 +75,7 @@ See code in [`lib/audio_app_manager/audio_app_manager_demo.dart`](https://github
 ![ImagenModel Architecture Diagram](README/AgenticAppManagerAudioArchitectureDiagram.png)
 
 ## Resources
-- [[Codelab] Build a Gemini powered Flutter app with Flutter & Vertex AI in Firebase](https://codelabs.developers.google.com/codelabs/flutter-gemini-colorist)
+- [[Codelab] Build a Gemini powered Flutter app with Flutter & Firebase AI Logic](https://codelabs.developers.google.com/codelabs/flutter-gemini-colorist)
 - [Demo App] [Colorist](https://github.com/flutter/demos/tree/main/vertex_ai_firebase_flutter_app): A Flutter application that explores LLM tooling interfaces by allowing users to describe colors in natural language. The app uses Gemini LLM to interpret descriptions and change the color of a displayed square by calling specialized color tools.
-- [Vertex AI in Firebase docs](https://firebase.google.com/docs/vertex-ai)
+- [Firebase AI Logic docs](https://firebase.google.com/docs/ai-logic)
 

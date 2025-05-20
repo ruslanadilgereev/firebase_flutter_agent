@@ -212,7 +212,7 @@ class _AudioAgentAppState extends State<AudioAgentApp> {
     await _recorder.stop();
   }
 
-  /// VERTEX AI IN FIREBASE
+  /// Firebase AI Logic
   Future<void> _toggleLiveGeminiSession() async {
     setState(() {
       _settingUpSession = true;
