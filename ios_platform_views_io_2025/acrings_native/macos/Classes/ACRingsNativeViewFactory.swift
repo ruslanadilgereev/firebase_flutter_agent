@@ -33,9 +33,8 @@ class NativeView: NSView {
         arguments args: Any?,
         binaryMessenger messenger: FlutterBinaryMessenger?
     ) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        wantsLayer = true
-        layer?.backgroundColor = NSColor.systemBlue.cgColor
+        super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        //wantsLayer = true
         // macOS views can be created here
         createNativeView(view: self)
     }
@@ -45,6 +44,7 @@ class NativeView: NSView {
     }
 
     func createNativeView(view _view: NSView) {
-        window?.contentView = NSHostingView(rootView: ACRings())
+        let hostingView =  NSHostingView(rootView: ACRings())
+        self.addSubview(hostingView)
     }
 }

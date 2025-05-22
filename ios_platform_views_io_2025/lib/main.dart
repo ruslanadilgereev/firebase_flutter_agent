@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 200, width: 0,
+            SizedBox(height: 300, width: 300,
             child:
             ActivityRings()),
             Text("Move", style: textTheme.displaySmall?.copyWith(color: Colors.red, fontWeight: FontWeight.bold),),

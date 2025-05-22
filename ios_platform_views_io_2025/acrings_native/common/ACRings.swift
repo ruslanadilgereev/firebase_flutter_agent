@@ -5,6 +5,17 @@ struct ACRings: View {
     var percentExercise: Double = 0.50
     var percentStand: Double = 0.75
 
+    // iOS and MacOS have differing coordinate systems
+    // In iOS, 0,0 is top-left, whereas in MacOS, 0,0 is bottom right
+    // Also circles are draw with their center at 0,0 so they must
+    // be translated accordingly
+    var offsetX = 150.0
+    #if os(iOS)
+    var offsetY = 150.0
+    #elseif os(macOS)
+    var offsetY = -150.0
+    #endif
+
         var body: some View {
                 ZStack {
                     // background
@@ -29,7 +40,6 @@ struct ACRings: View {
                         .stroke(.blue, lineWidth: 20).frame(width: 100, height: 200)
 
 
-                }.rotationEffect(.degrees(-90))
-
+                }.rotationEffect(.degrees(-90)).offset(x:offsetX, y:offsetY)
             }
 }
