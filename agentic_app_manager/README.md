@@ -23,7 +23,7 @@ interactions in improving user's app experiences and streamlining developer
 workflows.
 
 > [!NOTE]
-> Check out this Google I/O 2025 talk for a full walkthrough: [COMING SOON]().
+> Check out this Google I/O 2025 talk for a full walkthrough: [How to build agentic apps with Flutter and Firebase AI Logic](https://www.youtube.com/watch?v=xo271p-Fl_4).
 
 ## Getting Started
 
