@@ -1,0 +1,47 @@
+name: cupertino_compass
+description: "A travel planning app built with Flutter"
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  animations: any
+  cached_network_image: any
+  cloud_firestore: ^5.6.6
+  collection: any
+  cupertino_icons: any
+  firebase_auth: ^5.5.2
+  firebase_core: ^3.13.0
+  geolocator: ^11.0.0
+  go_router: any
+  google_fonts: any
+  intl: any
+  json_annotation: any
+  provider: any
+  transparent_image: any
+  url_launcher: any
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  json_serializable: any
+  build_runner: any
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/google_fonts/
+    - assets/icons/
+    - assets/activities.json
+    - assets/destinations.json
+    - assets/icon.png
+    - assets/logo.png
+    - assets/logotype.png
+    - assets/login_bg.png
+    - assets/user.jpg
+    - assets/title.png

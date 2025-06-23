@@ -1,0 +1,25 @@
+Welcome to firepit v1.1.0!
+Doing JSON parses for version checks at /snapshot/firepit/vendor/node_modules/firebase-tools/package.json
+firebase-tools
+Installed ft@10.5.0 and packaged ft@10.5.0
+Checking for npm/bin/npm-cli install at /Users/ryjohn/.cache/firebase/tools/lib/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /Users/ryjohn/.cache/firebase/tools/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /snapshot/firepit/node_modules/npm/bin/npm-cli
+Found npm/bin/npm-cli install.
+Checking for npm/bin/npm-cli install at /Users/ryjohn/.cache/firebase/tools/lib/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /Users/ryjohn/.cache/firebase/tools/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /snapshot/firepit/node_modules/npm/bin/npm-cli
+Found npm/bin/npm-cli install.
+ShellJSInternalError: ENOENT: no such file or directory, unlink '/Users/ryjohn/.cache/firebase/runtime/node.bat'
+Runtime binaries created.
+/Users/ryjohn/.bin/firebase
+/Users/ryjohn/.bin/firebase,/snapshot/firepit/firepit.js,--version
+Checking for npm/bin/npm-cli install at /Users/ryjohn/.cache/firebase/tools/lib/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /Users/ryjohn/.cache/firebase/tools/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /snapshot/firepit/node_modules/npm/bin/npm-cli
+Found npm/bin/npm-cli install.
+Checking for npm/bin/npm-cli install at /Users/ryjohn/.cache/firebase/tools/lib/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /Users/ryjohn/.cache/firebase/tools/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /snapshot/firepit/node_modules/npm/bin/npm-cli
+Found npm/bin/npm-cli install.
+ShellJSInternalError: ENOENT: no such file or directory, chmod '/Users/ryjohn/.cache/firebase/runtime/shell.js'
