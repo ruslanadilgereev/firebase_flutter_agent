@@ -1,5 +1,6 @@
 import { ai } from "../ai.js";
 import { z } from 'genkit';
+
 import { OPEN_WEATHER_API_KEY } from '../config.js';
 
 // Makes an API Call to the OpenWeather Geocoding API
@@ -23,16 +24,24 @@ async function getLatLong(location) {
         throw new Error('Unable to get latitude and longitude.');
     }
     catch (error) {
-        return console.error(error);
+        throw new Error('Error fetching latitude and longitude:', error);
     }
 }
 
 // Define a Genkit tool to get the latitude and logitude coordinates for a given location
 const getLatLongTool = ai.defineTool({
     name: 'getLatLong',
-    description: 'Get the latitude and longitude coordinates for a location.',
-    inputSchema: z.object({ "location": z.string().describe('The name of a place in the format of: City,State or Province. For example: Sunnyvale,California, Washington,DC, Honolulu,Hawaii ') }),
-    output: { schema: z.object({ lat: z.number(), long: z.number() }) },
+    description: 'Use this tool to get the latitude and longitude for a location.',
+    inputSchema: z.object({
+        "location": z.string()
+            .describe('The name of a place in the format of: City,State or Province. For example: Sunnyvale,California, Washington,DC, Honolulu,Hawaii ')
+    }),
+    output: {
+        schema: z.object({
+            lat: z.number().describe("The latitude of the location"),
+            long: z.number().describe("The longitude of the location")
+        })
+    },
 }, async (input) => await getLatLong(input.location));
 
 export { getLatLongTool };

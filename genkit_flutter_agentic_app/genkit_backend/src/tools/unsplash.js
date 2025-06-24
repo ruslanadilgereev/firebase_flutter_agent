@@ -29,7 +29,7 @@ async function getUnsplashImages(query) {
         // Return a single, random image URL.
         return imageUrls[Math.floor(Math.random() * imageUrls.length)]
     } catch (error) {
-        console.error('Error fetching images from Unsplash:', error);
+        throw new Error('Error fetching an image:', error);
     }
 }
 
