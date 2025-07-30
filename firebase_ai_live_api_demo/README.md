@@ -65,4 +65,10 @@ systemInstruction: Content.text(
 )
 ``` 
 
-1. Finally, try to modify the system instruction, model configuration, or even add tools to do something else!
+If you have some time on your hands, try to modify the system instruction, 
+model configuration, or add tools that let Gemini retrieve real-time info
+or to take take some sort of action.
+
+Feeling inspired? Check out these other Flutter & Firebase AI Logic sample apps!
+- [Agentic App Manager](https://github.com/flutter/demos/tree/main/agentic_app_manager): Build an agentic experience in a Flutter app using Firebase AI Logic with the Gemini API in Vertex AI.
+- [Colorist](https://github.com/flutter/demos/tree/main/vertex_ai_firebase_flutter_app): Explore LLM tooling interfaces by allowing users to describe colors in natural language. The app uses Gemini LLM to interpret descriptions and change the color of a displayed square by calling specialized color tools.
