@@ -16,7 +16,22 @@ Google I/O keynote:
 ## Getting Started
 
 1. Follow [these instructions](https://firebase.google.com/docs/ai-logic/get-started?&api=vertex#set-up-firebase) 
-to set up a Firebase project & connect the app to Firebase using `flutterfire configure`
+to set up a Firebase project
+
+1. Connect the app to your Firebase project by using `flutterfire configure`.
+
+Install `flutterfire_cli`:
+
+```console
+flutter pub global activate flutterfire_cli
+```
+
+Then run the `flutterfire` command to configure this project for your Firebase project:
+
+```console
+rm lib/firebase_options.dart
+flutterfire configure
+```
 
 1. Run `flutter pub get` in the root of the project directory `firebase_ai_live_api_demo` to
 install the Flutter app dependencies
