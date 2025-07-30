@@ -10,8 +10,7 @@ audio & video streaming to the Gemini "Live API" using Firebase AI Logic.
 
 As seen in  as seen in the 
 ["What's New in Flutter"](https://youtu.be/v6Rzo5khNE8?si=0316B2O7xDM4Zp4S&t=2278) 
-Google I/O keynote:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/v6Rzo5khNE8?si=U77COTkNlB7n5w5c&amp;start=2278" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Google I/O 2025 keynote.
 
 ## Getting Started
 
