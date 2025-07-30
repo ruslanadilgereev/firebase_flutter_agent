@@ -1,6 +1,6 @@
 {
-    "name": "multimodal_ai_prototype",
-    "short_name": "multimodal_ai_prototype",
+    "name": "flutterfire_ai_live_api_demo",
+    "short_name": "flutterfire_ai_live_api_demo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
