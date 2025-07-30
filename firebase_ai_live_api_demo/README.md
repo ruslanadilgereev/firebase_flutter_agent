@@ -41,9 +41,9 @@ install the Flutter app dependencies
 > Get available devices by running `flutter devices` ex: `AA8A7357`, `macos`, `chrome`.
 > The live video functionality won't work on iOS simulators due to camera restrictions.
 
-1. When prompted, allow the app permission to access your camera and microphone.
-
 ## How to use the demo app
+
+1. When prompted, allow the app permission to access your camera and microphone.
 
 1. Click the call button and say "Hello Gemini!" 
 
