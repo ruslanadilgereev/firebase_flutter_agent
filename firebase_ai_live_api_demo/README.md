@@ -1,0 +1,54 @@
+# Firebase AI Live API Demo
+**Target Platforms:** iOS, Android, Web
+
+**Tech Stack:** [Flutter](https://flutter.dev/) (frontend), [Firebase AI Logic](https://firebase.google.com/docs/ai-logic) (Gemini API in Vertex AI for the backend)
+
+![Plant Identifier – Firebase AI Live API Demo App on mobile & web](README/PlantIdentifierHero.png)
+
+This app demonstrates how to build a Flutter app with real-time bidirectional
+audio & video streaming to the Gemini "Live API" using Firebase AI Logic.
+
+As seen in  as seen in the 
+["What's New in Flutter"](https://youtu.be/v6Rzo5khNE8?si=0316B2O7xDM4Zp4S&t=2278) 
+Google I/O keynote:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v6Rzo5khNE8?si=U77COTkNlB7n5w5c&amp;start=2278" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Getting Started
+
+1. Follow [these instructions](https://firebase.google.com/docs/ai-logic/get-started?&api=vertex#set-up-firebase) 
+to set up a Firebase project & connect the app to Firebase using `flutterfire configure`
+
+1. Run `flutter pub get` in the root of the project directory `firebase_ai_live_api_demo` to
+install the Flutter app dependencies
+
+1. Run `flutter run -d <device-id>` to start the app on iOS, Android, or Web. 
+
+> [!TIP]
+> Get available devices by running `flutter devices` ex: `AA8A7357`, `macos`, `chrome`.
+> The live video functionality won't work on iOS simulators due to camera restrictions.
+
+1. When prompted, allow the app permission to access your camera and microphone.
+
+## How to use the demo app
+
+1. Click the call button and say "Hello Gemini!" 
+
+2. Turn on your device camera by clicking the camera button.
+
+1. You'll see in `lib/src/flutterfire_ai_live_api_demo.dart` that the app 
+is pre-configured with a "plant identifier" system instruction. So point your camera at a plant and ask Gemini to identify it! 
+
+```dart
+systemInstruction: Content.text(
+    'You are a plant identifier. Greet the user by telling them that you '
+    'are a plant identifier. Ask them to turn on their camera and show '
+    'you a plant and you can help them identify plants and flowers. '
+    'Your job is to help the user dentify plants and flowers. '
+    'When the user asks you to identify a plant or flower, respond '
+    'by telling them what it is and along with fun fact about it. '
+    'If you\'re unable to identify the plant or flower, you may ask the user '
+    'for more information about it or ask for a closer look.',
+)
+``` 
+
+1. Finally, try to modify the system instruction, model configuration, or even add tools to do something else!
