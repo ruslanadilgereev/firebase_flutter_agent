@@ -1,4 +1,4 @@
-# Firebase AI Live API Demo
+# Firebase AI Logic Live API Demo
 **Target Platforms:** iOS, Android, Web
 
 **Tech Stack:** [Flutter](https://flutter.dev/) (frontend), [Firebase AI Logic](https://firebase.google.com/docs/ai-logic) (Gemini API in Vertex AI for the backend)
