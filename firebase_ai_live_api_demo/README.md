@@ -67,7 +67,7 @@ systemInstruction: Content.text(
 
 If you have some time on your hands, try to modify the system instruction, 
 model configuration, or add tools that let Gemini retrieve real-time info
-or to take take some sort of action.
+or take some sort of action.
 
 ## Additional Resources
 - [[Codelab] Build a Gemini powered Flutter app with Flutter & Firebase AI Logic](https://codelabs.developers.google.com/codelabs/flutter-gemini-colorist)
