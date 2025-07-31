@@ -49,7 +49,7 @@ install the Flutter app dependencies
 
 2. Turn on your device camera by clicking the camera button.
 
-1. You'll see in `lib/src/flutterfire_ai_live_api_demo.dart` that the app 
+1. You'll see in [`lib/src/flutterfire_ai_live_api_demo.dart`](https://github.com/flutter/demos/blob/bf2a43a5c3294cab00beef093be857544c2aad08/firebase_ai_live_api_demo/lib/src/flutterfire_ai_live_api_demo.dart#L24) that the app 
 is pre-configured with a "plant identifier" system instruction. So point your camera at a plant and ask Gemini to identify it! 
 
 ```dart
