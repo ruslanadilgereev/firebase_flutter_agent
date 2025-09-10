@@ -1,0 +1,12 @@
+output:
+  dart:
+    path: lib/graal/
+
+classes:
+  - 'org.graalvm.polyglot.Context'
+  - 'org.graalvm.polyglot.Value'
+
+maven_downloads:
+  jar_only_deps:
+    - 'org.graalvm.polyglot:polyglot:24.2.1'
+    - 'org.graalvm.polyglot:js:24.2.2'
