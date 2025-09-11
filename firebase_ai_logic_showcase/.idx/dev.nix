@@ -7,8 +7,8 @@
   packages = [
     pkgs.jdk21
     pkgs.unzip
-    pkgs.nodePackages.nodemon
     pkgs.nodejs_22
+    pkgs.nodePackages.nodemon
   ];
   # Sets environment variables in the workspace
   env = {
@@ -27,10 +27,10 @@
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
-      "Dart-Code.flutter"
-      "Dart-Code.dart-code"
       "hashicorp.terraform"
       "ms-vscode.js-debug"
+      "Dart-Code.flutter"
+      "Dart-Code.dart-code"
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
@@ -51,10 +51,10 @@
           command = [ "flutter" "run" "--machine" "-d" "web-server" "--web-hostname" "0.0.0.0" "--web-port" "$PORT" ];
           manager = "flutter";
         };
-        android = {
-          command = [ "flutter" "run" "--machine" "-d" "android" "-d" "localhost:5555" ];
-          manager = "flutter";
-        };
+        # android = {
+        #   command = [ "flutter" "run" "--machine" "-d" "android" "-d" "localhost:5555" ];
+        #   manager = "flutter";
+        # };
       };
     };
   };
