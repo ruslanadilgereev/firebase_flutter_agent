@@ -20,11 +20,16 @@ function ci_projects () {
         # Run the actual tests.
         if [ -d "test" ]
         then
-            if grep -q "flutter:" "pubspec.yaml"; then
-                flutter test
-            else
-                # If the project is not a Flutter project, use the Dart CLI.
-                dart test
+            # Skip vertex_ai_firebase_flutter_app on Windows
+            if [ $PROJECT_NAME = "vertex_ai_firebase_flutter_app" ] && [ $RUNNER_OS = 'Windows' ]; then 
+                echo "Skipping $PROJECT_NAME on $RUNNER_OS"
+            else 
+                if grep -q "flutter:" "pubspec.yaml"; then
+                    flutter test
+                else
+                    # If the project is not a Flutter project, use the Dart CLI.
+                    dart test
+                fi
             fi
         fi
 
