@@ -5,7 +5,7 @@ function ci_projects () {
     local arr=("$@")
     for PROJECT_NAME in "${arr[@]}"
     do
-        echo "== Testing '${PROJECT_NAME}' on Flutter's $channel channel =="
+        echo "== Testing '${PROJECT_NAME}' on Flutter's $channel channel using $RUNNER_OS =="
         pushd "${PROJECT_NAME}"
 
         # Grab packages.
@@ -21,7 +21,7 @@ function ci_projects () {
         if [ -d "test" ]
         then
             # Skip vertex_ai_firebase_flutter_app on Windows
-            if [ $PROJECT_NAME = "vertex_ai_firebase_flutter_app" ] && [ $RUNNER_OS = 'Windows' ]; then 
+            if [ $PROJECT_NAME = 'vertex_ai_firebase_flutter_app' ] && [ $RUNNER_OS = 'Windows' ]; then 
                 echo "Skipping $PROJECT_NAME on $RUNNER_OS"
             else 
                 if grep -q "flutter:" "pubspec.yaml"; then
