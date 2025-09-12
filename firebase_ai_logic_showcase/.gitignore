@@ -52,7 +52,3 @@ ephemeral/
 google-services.json
 GoogleService-Info.plist
 .firebaserc
-firebase.json
-
-# Firebase options file
-lib/firebase_options.dart
