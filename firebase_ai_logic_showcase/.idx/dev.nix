@@ -27,10 +27,10 @@
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
-      "hashicorp.terraform"
-      "ms-vscode.js-debug"
       "Dart-Code.flutter"
       "Dart-Code.dart-code"
+      "hashicorp.terraform"
+      "ms-vscode.js-debug"
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
