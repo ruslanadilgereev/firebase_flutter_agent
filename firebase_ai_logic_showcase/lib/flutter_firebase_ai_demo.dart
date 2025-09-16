@@ -20,6 +20,7 @@ import 'demos/multimodal/multimodal_demo.dart';
 import './demos/imagen/imagen_demo.dart';
 import './demos/live_api/live_api_demo.dart';
 import 'firebase_options.dart';
+import 'shared/ui/blaze_warning.dart';
 
 class Demo {
   final String name;
@@ -180,66 +181,7 @@ class DemoHomeScreen extends StatelessWidget {
                 itemCount: demos.length,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 16,
-                horizontal: 8.0,
-              ),
-              child: Text.rich(
-                TextSpan(
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  children: [
-                    TextSpan(
-                      text: '* Demo includes some features that require ',
-                    ),
-                    WidgetSpan(
-                      baseline: TextBaseline.ideographic,
-                      alignment: PlaceholderAlignment.top,
-                      child: Link(
-                        uri: Uri.parse('https://firebase.google.com/pricing'),
-                        target: LinkTarget.blank,
-                        builder: (context, followLink) => GestureDetector(
-                          onTap: followLink,
-                          child: Text(
-                            style: Theme.of(context).textTheme.bodyMedium!
-                                .copyWith(
-                                  height: 1.15,
-                                  decoration: TextDecoration.underline,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                            'Blaze plan',
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextSpan(text: ', which you can '),
-                    WidgetSpan(
-                      baseline: TextBaseline.ideographic,
-                      alignment: PlaceholderAlignment.top,
-                      child: Link(
-                        uri: Uri.parse(
-                          'https://console.firebase.google.com/project/${DefaultFirebaseOptions.currentPlatform.projectId}/overview?purchaseBillingPlan=metered',
-                        ),
-                        target: LinkTarget.blank,
-                        builder: (context, followLink) => GestureDetector(
-                          onTap: followLink,
-                          child: Text(
-                            style: Theme.of(context).textTheme.bodyMedium!
-                                .copyWith(
-                                  height: 1.15,
-                                  decoration: TextDecoration.underline,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                            'enable in Firebase Console',
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextSpan(text: '.'),
-                  ],
-                ),
-              ),
-            ),
+            BlazeFooter(),
           ],
         ),
       ),
