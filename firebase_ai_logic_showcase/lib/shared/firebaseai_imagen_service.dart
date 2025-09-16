@@ -16,9 +16,7 @@ import 'dart:developer';
 import 'dart:typed_data';
 import 'package:firebase_ai/firebase_ai.dart';
 
-/// A service that handles all communication with the Firebase AI Imagen API.
-///
-/// This service demonstrates how to use the `imagenModel()` to generate images
+/// This service demonstrates how to use a Gemini Image model to generate images
 /// from a text prompt. It showcases the text-to-image generation feature.
 ///
 /// For more information, see the official documentation:
@@ -27,10 +25,12 @@ import 'package:firebase_ai/firebase_ai.dart';
 /// This is a shared service, located in the /shared directory, because it is
 /// used by multiple demos (Chat, Live API, and Imagen) to provide image
 /// generation capabilities.
-class ImagenService {
-  final _model = FirebaseAI.googleAI().imagenModel(
-    model: 'imagen-4.0-generate-001',
-    generationConfig: ImagenGenerationConfig(numberOfImages: 1),
+class ImageGenerationService {
+  final _model = FirebaseAI.googleAI().generativeModel(
+    model: 'gemini-2.5-flash-image-preview',
+    generationConfig: GenerationConfig(
+      responseModalities: [ResponseModalities.image],
+    ),
   );
 
   /// Generates a single image from a text prompt.
@@ -38,34 +38,10 @@ class ImagenService {
   /// Throws an exception if the API call fails, allowing the UI to handle it.
   Future<Uint8List> generateImage(String prompt) async {
     try {
-      final res = await _model.generateImages(prompt);
-      return res.images.first.bytesBase64Encoded;
+      final res = await _model.generateContent([Content.text(prompt)]);
+      return res.inlineDataParts.first.bytes;
     } catch (e) {
       log('Error generating image: $e');
-      rethrow;
-    }
-  }
-
-  /// Generates multiple images from a text prompt.
-  ///
-  /// Throws an exception if the API call fails, allowing the UI to handle it.
-  Future<List<Uint8List>> generateImages(
-    String prompt, {
-    int numberOfImages = 4,
-  }) async {
-    try {
-      final model = FirebaseAI.googleAI().imagenModel(
-        model: 'imagen-4.0-generate-001',
-        generationConfig: ImagenGenerationConfig(
-          numberOfImages: numberOfImages,
-        ),
-      );
-      final res = await model.generateImages(prompt);
-      return res.images
-          .map((ImagenInlineImage e) => e.bytesBase64Encoded)
-          .toList();
-    } catch (e) {
-      log('Error generating images: $e');
       rethrow;
     }
   }

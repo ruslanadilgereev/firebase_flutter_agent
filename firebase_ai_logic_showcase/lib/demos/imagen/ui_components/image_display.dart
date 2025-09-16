@@ -13,8 +13,10 @@
 // limitations under the License.
 
 import 'dart:typed_data';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../shared/ui/app_spacing.dart';
+import '../../../shared/ui/blaze_warning.dart';
 
 class ImageDisplay extends StatelessWidget {
   final bool loading;
@@ -36,7 +38,18 @@ class ImageDisplay extends StatelessWidget {
               child: loading
                   ? CircularProgressIndicator()
                   : images.isEmpty
-                  ? Text('Write a prompt below to generate images.')
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                          'Write a prompt below to generate images.',
+                        ),
+                        SizedBox.square(dimension: AppSpacing.s8),
+                        BlazeWarning(),
+                      ],
+                    )
                   : CarouselView.weighted(
                       enableSplash: false,
                       itemSnapping: true,

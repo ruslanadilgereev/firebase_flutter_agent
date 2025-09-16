@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../shared/ui/app_spacing.dart';
+import '../../../shared/ui/blaze_warning.dart';
 import '../models/gemini_model.dart';
 
 class ModelPicker extends StatefulWidget {
@@ -67,8 +68,12 @@ class _ModelPickerState extends State<ModelPicker> {
               const SizedBox.square(dimension: AppSpacing.s8),
               Padding(
                 padding: const EdgeInsets.all(AppSpacing.s8),
-                child: Text(_selectedModelDescription),
+                child: Text(
+                  textAlign: TextAlign.center,
+                  _selectedModelDescription,
+                ),
               ),
+              if (_selectedModelName.contains('preview')) BlazeWarning(),
             ],
           ),
         ),

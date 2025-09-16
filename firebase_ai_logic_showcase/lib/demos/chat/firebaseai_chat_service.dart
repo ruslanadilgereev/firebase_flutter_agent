@@ -109,7 +109,7 @@ class ChatService {
   Future<ChatResponse> _handleGenerateImage(FunctionCall functionCall) async {
     log('Generate image!');
     String description = functionCall.args['description']! as String;
-    var imageBytes = await ImagenService().generateImage(description);
+    var imageBytes = await ImageGenerationService().generateImage(description);
     var response = await _chat.sendMessage(
       Content.text(
         'Successfully generated an image of $description! Please send back a message to include with the image.',
