@@ -44,7 +44,7 @@ List<Demo> demos = [
   ),
   Demo(
     name: 'Multimodal Prompt',
-    description: 'Ask Gemini about an image, audio, video, or PDF file.',
+    description: 'Ask Gemini about an image, audio, video, or text file.',
     icon: Icon(size: 32, Icons.attach_file),
     page: MultimodalDemo(),
   ),
