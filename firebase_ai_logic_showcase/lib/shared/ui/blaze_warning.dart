@@ -1,6 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 import '../../firebase_options.dart';
 
 class BlazeWarning extends StatefulWidget {
@@ -32,14 +32,28 @@ class _BlazeWarningState extends State<BlazeWarning> {
             style: Theme.of(context).textTheme.bodyMedium,
             text: 'This demo requires Blaze plan, which you can ',
             children: [
-              TextSpan(
-                text: 'enable in the Firebase Console.',
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  color: Theme.of(context).colorScheme.primary,
+              WidgetSpan(
+                baseline: TextBaseline.ideographic,
+                alignment: PlaceholderAlignment.top,
+                child: Link(
+                  uri: Uri.parse(
+                    'https://console.firebase.google.com/project/${DefaultFirebaseOptions.currentPlatform.projectId}/overview?purchaseBillingPlan=metered',
+                  ),
+                  target: LinkTarget.blank,
+                  builder: (context, followLink) => GestureDetector(
+                    onTap: followLink,
+                    child: Text(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        height: 1.15,
+                        decoration: TextDecoration.underline,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      'enable in Firebase Console',
+                    ),
+                  ),
                 ),
-                recognizer: TapGestureRecognizer()..onTap = _launchBlazeUrl,
               ),
+              TextSpan(text: '.'),
             ],
           ),
         ),
