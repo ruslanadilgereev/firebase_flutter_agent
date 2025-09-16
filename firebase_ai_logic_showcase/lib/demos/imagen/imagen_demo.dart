@@ -19,16 +19,16 @@ import '../../shared/ui/app_spacing.dart';
 import '../../shared/firebaseai_imagen_service.dart';
 import './ui_components/ui_components.dart';
 
-class ImagenDemo extends StatefulWidget {
-  const ImagenDemo({super.key});
+class ImageGenerationDemo extends StatefulWidget {
+  const ImageGenerationDemo({super.key});
 
   @override
-  State<ImagenDemo> createState() => _ImagenDemoState();
+  State<ImageGenerationDemo> createState() => _ImageGenerationDemoState();
 }
 
-class _ImagenDemoState extends State<ImagenDemo> {
+class _ImageGenerationDemoState extends State<ImageGenerationDemo> {
   // Service for interacting with the Gemini API.
-  final _imagenService = ImagenService();
+  final _imagenService = ImageGenerationService();
 
   // UI State
   bool _loading = false;
@@ -46,12 +46,9 @@ class _ImagenDemoState extends State<ImagenDemo> {
     });
 
     try {
-      final newImages = await _imagenService.generateImages(
-        prompt,
-        numberOfImages: 4,
-      );
+      final image = await _imagenService.generateImage(prompt);
       setState(() {
-        images = newImages;
+        images = [image];
       });
     } catch (e) {
       if (!context.mounted) return;
@@ -71,7 +68,7 @@ class _ImagenDemoState extends State<ImagenDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Imagen Demo')),
+      appBar: AppBar(title: Text('Image Generation Demo')),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
           bottom: MediaQuery.viewInsetsOf(context).bottom,

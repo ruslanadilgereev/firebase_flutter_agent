@@ -53,7 +53,7 @@ class LiveApiService {
     systemInstruction: Content.text(
       'You are a helpful assisant. If you have a tool to help the user, please use it.',
     ),
-    model: 'gemini-live-2.5-flash-preview',
+    model: 'gemini-2.0-flash-live-001',
     liveGenerationConfig: LiveGenerationConfig(
       speechConfig: SpeechConfig(voiceName: 'fenrir'),
       responseModalities: [ResponseModalities.audio],
@@ -186,7 +186,9 @@ class LiveApiService {
         onError('Image generation failed: No description provided.');
         return;
       }
-      final image = await ImagenService().generateImage(imageDescription);
+      final image = await ImageGenerationService().generateImage(
+        imageDescription,
+      );
       onImageGenerated(image);
     } catch (e) {
       log('Error generating image: $e');

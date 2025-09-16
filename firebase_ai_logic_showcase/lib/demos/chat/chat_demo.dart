@@ -141,13 +141,10 @@ class _ChatDemoState extends ConsumerState<ChatDemo> {
         ),
       );
     } catch (e) {
-      print(e);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text(
-              'Oops. Sorry, the message was unable to be sent!',
-            ),
+            content: Text(e.toString()),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );

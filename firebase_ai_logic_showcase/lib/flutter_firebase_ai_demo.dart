@@ -12,17 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 import 'shared/ui/app_frame.dart';
 import 'demos/chat/chat_demo.dart';
 import 'demos/multimodal/multimodal_demo.dart';
 import './demos/imagen/imagen_demo.dart';
 import './demos/live_api/live_api_demo.dart';
+import 'firebase_options.dart';
 
 class Demo {
   final String name;
   final String description;
-  final IconData icon;
+  final Widget icon;
   final Widget page;
 
   Demo({
@@ -37,27 +41,27 @@ List<Demo> demos = [
   Demo(
     name: 'Live API',
     description: 'Real-time bidirectional audio & video streaming with Gemini.',
-    icon: Icons.video_call,
+    icon: Icon(size: 32, Icons.video_call),
     page: LiveAPIDemo(),
-  ),
-  Demo(
-    name: 'Imagen',
-    description: 'Generate images with a prompt.',
-    icon: Icons.format_paint,
-    page: ImagenDemo(),
   ),
   Demo(
     name: 'Multimodal Prompt',
     description: 'Ask Gemini about an image, audio, video, or PDF file.',
-    icon: Icons.attach_file,
+    icon: Icon(size: 32, Icons.attach_file),
     page: MultimodalDemo(),
   ),
   Demo(
-    name: 'Chat with Gemini',
+    name: 'Chat with Gemini * ',
     description:
-        'Support for various models with tool calling and image generation.',
-    icon: Icons.chat,
+        'Support for many models with chat history, tool calling, and image generation.',
+    icon: Icon(size: 32, Icons.chat),
     page: ChatDemo(),
+  ),
+  Demo(
+    name: 'Generate Images with Nano Banana *',
+    description: 'Generate an image using a text prompt.',
+    icon: Text(style: TextStyle(fontSize: 28), '🍌'),
+    page: ImageGenerationDemo(),
   ),
 ];
 
@@ -161,7 +165,7 @@ class DemoHomeScreen extends StatelessWidget {
                       shape: RoundedSuperellipseBorder(
                         borderRadius: BorderRadiusGeometry.circular(16),
                       ),
-                      leading: Icon(size: 32, demo.icon),
+                      leading: demo.icon,
                       title: Text(
                         demo.name,
                         style: TextStyle(fontWeight: FontWeight.bold),
@@ -176,6 +180,66 @@ class DemoHomeScreen extends StatelessWidget {
                   );
                 },
                 itemCount: demos.length,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 8.0,
+              ),
+              child: Text.rich(
+                TextSpan(
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  children: [
+                    TextSpan(
+                      text: '* Demo includes some features that require ',
+                    ),
+                    WidgetSpan(
+                      baseline: TextBaseline.ideographic,
+                      alignment: PlaceholderAlignment.top,
+                      child: Link(
+                        uri: Uri.parse('https://firebase.google.com/pricing'),
+                        target: LinkTarget.blank,
+                        builder: (context, followLink) => GestureDetector(
+                          onTap: followLink,
+                          child: Text(
+                            style: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  height: 1.15,
+                                  decoration: TextDecoration.underline,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                            'Blaze plan',
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextSpan(text: ', which you can '),
+                    WidgetSpan(
+                      baseline: TextBaseline.ideographic,
+                      alignment: PlaceholderAlignment.top,
+                      child: Link(
+                        uri: Uri.parse(
+                          'https://console.firebase.google.com/project/${DefaultFirebaseOptions.currentPlatform.projectId}/overview?purchaseBillingPlan=metered',
+                        ),
+                        target: LinkTarget.blank,
+                        builder: (context, followLink) => GestureDetector(
+                          onTap: followLink,
+                          child: Text(
+                            style: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  height: 1.15,
+                                  decoration: TextDecoration.underline,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                            'enable in Firebase Console',
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextSpan(text: '.'),
+                  ],
+                ),
               ),
             ),
           ],
