@@ -6,14 +6,12 @@ var geminiModels = GeminiModels();
 class GeminiModel {
   final String name;
   final String description;
-  final String warning;
   final GenerativeModel model;
   final String defaultPrompt;
 
   GeminiModel({
     required this.name,
     required this.description,
-    this.warning = '',
     required this.model,
     required this.defaultPrompt,
   });
