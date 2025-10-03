@@ -50,8 +50,6 @@ class AudioOutput {
     }
 
     stream = SoLoud.instance.setBufferStream(
-      maxBufferSizeBytes:
-          1024 * 1024 * 10, // 10MB of max buffer (not allocated)
       bufferingType: BufferingType.released,
       bufferingTimeNeeds: 0,
       sampleRate: sampleRate,
