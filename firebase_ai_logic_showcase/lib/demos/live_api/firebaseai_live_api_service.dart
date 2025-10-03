@@ -59,7 +59,11 @@ class LiveApiService {
       responseModalities: [ResponseModalities.audio],
     ),
     tools: [
-      Tool.functionDeclarations([generateImageTool, setAppColorTool]),
+      Tool.functionDeclarations([
+        setAppColorTool,
+        // Gemini Flash Image currently requires the pay-as-you-go Blaze plan.
+        generateImageTool,
+      ]),
     ],
   );
 
@@ -156,6 +160,8 @@ class LiveApiService {
 
   Future<void> _handleTurnComplete() async {
     log('Model is done generating. Turn complete!');
+    final halfSecondOfSilence = Uint8List(24000);
+    _audioOutput.addDataToAudioStream(halfSecondOfSilence);
   }
 
   Future<void> _handleLiveServerToolCall(LiveServerToolCall response) async {
