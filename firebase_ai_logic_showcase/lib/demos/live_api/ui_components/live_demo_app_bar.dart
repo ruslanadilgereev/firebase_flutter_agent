@@ -21,7 +21,7 @@ class LiveApiDemoAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       leadingWidth: 100,
-      title: const Text('Live API Demo'),
+      title: const Text('Gemini Live API Demo'),
     );
   }
 

@@ -38,21 +38,21 @@ class Demo {
 
 List<Demo> demos = [
   Demo(
-    name: 'Live API',
+    name: 'Gemini Live API',
     description: 'Real-time bidirectional audio & video streaming with Gemini.',
     icon: Icon(size: 32, Icons.video_call),
     page: LiveAPIDemo(),
   ),
   Demo(
     name: 'Multimodal Prompt',
-    description: 'Ask Gemini about an image, audio, video, or text file.',
+    description: 'Ask a Gemini model about an image, audio, video, or PDF file.',
     icon: Icon(size: 32, Icons.attach_file),
     page: MultimodalDemo(),
   ),
   Demo(
     name: 'Chat with Gemini * ',
     description:
-        'Support for many models with chat history, tool calling, and image generation.',
+        'Chat with a Gemini model, including a chat history, tool calling, and even image generation.',
     icon: Icon(size: 32, Icons.chat),
     page: ChatDemo(),
   ),
@@ -124,7 +124,7 @@ class DemoHomeScreen extends StatelessWidget {
         ),
         title: Text(
           style: Theme.of(context).textTheme.titleLarge,
-          'Flutter x Firebase AI Logic',
+          'Flutter AI Playground',
         ),
         actions: [
           Padding(
@@ -145,7 +145,7 @@ class DemoHomeScreen extends StatelessWidget {
               child: Text(
                 style: Theme.of(context).textTheme.bodyLarge,
                 textAlign: TextAlign.center,
-                "Build AI features for your Flutter apps using the Firebase AI Logic SDK.\nPowered by Google AI models.",
+                "Build AI features in your Flutter apps – use the Firebase AI Logic SDK to access Google's AI models directly from your app.",
               ),
             ),
             Expanded(
