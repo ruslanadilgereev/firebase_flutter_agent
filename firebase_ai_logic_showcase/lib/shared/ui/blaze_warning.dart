@@ -13,7 +13,7 @@ class BlazeWarning extends StatelessWidget {
         child: RichText(
           text: TextSpan(
             style: Theme.of(context).textTheme.bodyMedium,
-            text: 'This demo includes some features that require an upgrade to the ',
+            text: 'This demo includes some features that require an upgrade to the pay-as-you-go Blaze pricing plan, which you can ',
             children: [
               WidgetSpan(
                 baseline: TextBaseline.ideographic,
