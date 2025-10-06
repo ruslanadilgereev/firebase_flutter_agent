@@ -33,7 +33,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appColor = ref.watch(appStateProvider).appColor;
     return MaterialApp(
-      title: 'Flutter x Firebase AI Logic Demo',
+      title: 'Flutter AI Playground',
       home: DemoHomeScreen(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

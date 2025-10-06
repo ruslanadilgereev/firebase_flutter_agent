@@ -13,7 +13,7 @@ class BlazeWarning extends StatelessWidget {
         child: RichText(
           text: TextSpan(
             style: Theme.of(context).textTheme.bodyMedium,
-            text: 'This demo requires Blaze plan, which you can ',
+            text: 'This demo includes some features that require an upgrade to the pay-as-you-go Blaze pricing plan, which you can ',
             children: [
               WidgetSpan(
                 baseline: TextBaseline.ideographic,
@@ -31,7 +31,7 @@ class BlazeWarning extends StatelessWidget {
                         decoration: TextDecoration.underline,
                         color: Theme.of(context).colorScheme.primary,
                       ),
-                      'enable in Firebase Console',
+                      'set up in the Firebase console',
                     ),
                   ),
                 ),
@@ -56,7 +56,7 @@ class BlazeFooter extends StatelessWidget {
         TextSpan(
           style: Theme.of(context).textTheme.bodyMedium,
           children: [
-            TextSpan(text: '* Demo includes some features that require '),
+            TextSpan(text: '* This demo includes some features that require an upgrade to the '),
             WidgetSpan(
               baseline: TextBaseline.ideographic,
               alignment: PlaceholderAlignment.top,
@@ -71,7 +71,7 @@ class BlazeFooter extends StatelessWidget {
                       decoration: TextDecoration.underline,
                       color: Theme.of(context).colorScheme.primary,
                     ),
-                    'Blaze plan',
+                    'pay-as-you-go Blaze pricing plan',
                   ),
                 ),
               ),
@@ -93,7 +93,7 @@ class BlazeFooter extends StatelessWidget {
                       decoration: TextDecoration.underline,
                       color: Theme.of(context).colorScheme.primary,
                     ),
-                    'enable in Firebase Console',
+                    'set up in the Firebase console',
                   ),
                 ),
               ),
