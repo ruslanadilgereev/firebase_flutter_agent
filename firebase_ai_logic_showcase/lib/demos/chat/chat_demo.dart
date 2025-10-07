@@ -45,6 +45,7 @@ class _ChatDemoState extends ConsumerState<ChatDemo> {
   Uint8List? _attachment;
   final ScrollController _scrollController = ScrollController();
   bool _loading = false;
+  OverlayPortalController opController = OverlayPortalController();
 
   @override
   void initState() {
@@ -52,6 +53,10 @@ class _ChatDemoState extends ConsumerState<ChatDemo> {
     _chatService = ChatService(ref);
     _chatService.init();
     _userTextInputController.text = geminiModels.selectedModel.defaultPrompt;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      opController.show();
+    });
   }
 
   @override
@@ -158,6 +163,7 @@ class _ChatDemoState extends ConsumerState<ChatDemo> {
   }
 
   void showModelPicker() {
+    opController.hide();
     showDialog(
       context: context,
       builder: (context) {
@@ -183,9 +189,30 @@ class _ChatDemoState extends ConsumerState<ChatDemo> {
         backgroundColor: Colors.transparent,
         title: const Text('Chat Demo'),
         actions: [
-          IconButton(
-            onPressed: showModelPicker,
-            icon: Icon(Icons.settings_outlined),
+          OverlayPortal(
+            controller: opController,
+            child: IconButton(
+              onPressed: showModelPicker,
+              icon: Icon(Icons.settings_outlined),
+            ),
+            overlayChildBuilder: (context) {
+              return Positioned(
+                right: 0,
+                top: 40,
+                child: Dialog(
+                  insetAnimationDuration: Duration(milliseconds: 2000),
+                  constraints: BoxConstraints(maxWidth: 500),
+                  insetPadding: EdgeInsets.all(8),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [Text('Try another model!')],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

@@ -11,9 +11,11 @@ class BlazeWarning extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: RichText(
+          textAlign: TextAlign.center,
           text: TextSpan(
             style: Theme.of(context).textTheme.bodyMedium,
-            text: 'This demo includes some features that require an upgrade to the pay-as-you-go Blaze pricing plan, which you can ',
+            text:
+                'This demo includes some features that require an upgrade to the pay-as-you-go Blaze pricing plan, which you can ',
             children: [
               WidgetSpan(
                 baseline: TextBaseline.ideographic,
@@ -53,10 +55,14 @@ class BlazeFooter extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8.0),
       child: Text.rich(
+        textAlign: TextAlign.center,
         TextSpan(
           style: Theme.of(context).textTheme.bodyMedium,
           children: [
-            TextSpan(text: '* This demo includes some features that require an upgrade to the '),
+            TextSpan(
+              text:
+                  '* This demo includes some features that require an upgrade to the ',
+            ),
             WidgetSpan(
               baseline: TextBaseline.ideographic,
               alignment: PlaceholderAlignment.top,
