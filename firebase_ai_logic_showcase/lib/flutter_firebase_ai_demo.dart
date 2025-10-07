@@ -45,22 +45,17 @@ List<Demo> demos = [
   ),
   Demo(
     name: 'Multimodal Prompt',
-    description: 'Ask a Gemini model about an image, audio, video, or PDF file.',
+    description:
+        'Ask a Gemini model about an image, audio, video, or PDF file.',
     icon: Icon(size: 32, Icons.attach_file),
     page: MultimodalDemo(),
   ),
   Demo(
-    name: 'Chat with Gemini * ',
+    name: 'Create & Edit Images with Nano Banana *',
     description:
         'Chat with a Gemini model, including a chat history, tool calling, and even image generation.',
-    icon: Icon(size: 32, Icons.chat),
-    page: ChatDemo(),
-  ),
-  Demo(
-    name: 'Generate Images with Nano Banana *',
-    description: 'Generate an image using a text prompt.',
     icon: Text(style: TextStyle(fontSize: 28), '🍌'),
-    page: ImageGenerationDemo(),
+    page: ChatDemo(),
   ),
 ];
 
