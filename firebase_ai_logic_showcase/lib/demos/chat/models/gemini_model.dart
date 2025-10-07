@@ -18,7 +18,7 @@ class GeminiModel {
 }
 
 class GeminiModels {
-  String selectedModelName = 'gemini-2.5-flash';
+  String selectedModelName = 'gemini-2.5-flash-image-preview';
   GeminiModel get selectedModel => models[selectedModelName]!;
 
   /// A map of Gemini models that can be used in the Chat Demo.
@@ -52,7 +52,8 @@ class GeminiModels {
         ),
       ),
       defaultPrompt:
-          'Hey Gemini! Can you create an image of Dash, the Flutter mascot, surfing in Waikiki Hawaii?',
+          'Hot air balloons rising over the San Francisco Bay at golden hour '
+          'with a view of the Golden Gate Bridge. Make it anime style.',
     ),
   };
 
