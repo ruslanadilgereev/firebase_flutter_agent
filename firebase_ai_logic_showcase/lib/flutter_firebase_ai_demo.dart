@@ -78,30 +78,60 @@ class DemoHomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
+          body: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 400),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(textAlign: TextAlign.center, 'Please let us know!'),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      text:
+                          'Have features you want to see in the app? Please file an issue for us at: ',
+                      children: [
+                        WidgetSpan(
+                          baseline: TextBaseline.ideographic,
+                          alignment: PlaceholderAlignment.top,
+                          child: Link(
+                            uri: Uri.parse(
+                              'https://github.com/flutter/demos/issues',
+                            ),
+                            target: LinkTarget.blank,
+                            builder: (context, followLink) => GestureDetector(
+                              onTap: followLink,
+                              child: Text(
+                                style: Theme.of(context).textTheme.bodyMedium!
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      height: 1.15,
+                                      decoration: TextDecoration.underline,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                    ),
+                                'github.com/flutter/demos/issues',
+                              ),
+                            ),
+                          ),
+                        ),
+                        TextSpan(text: '.'),
+                      ],
+                    ),
+                  ),
+                  SizedBox.square(dimension: 32),
+                  Text(
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                    textAlign: TextAlign.center,
+                    'This app was made with ❤️\nby the Flutter & Firebase AI Logic Teams',
+                  ),
                 ],
               ),
-              SelectableText(
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold),
-                'github.com/firebase/flutterfire/issues',
-              ),
-              SizedBox.square(dimension: 32),
-              Text(
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-                textAlign: TextAlign.center,
-                'Made with ❤️\nby the Flutter & Firebase AI Logic Teams',
-              ),
-            ],
+            ),
           ),
         ),
       ),
