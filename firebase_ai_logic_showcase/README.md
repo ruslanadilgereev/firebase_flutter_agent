@@ -49,16 +49,6 @@ microphone's audio input.
 you can ask Gemini to use the two tools that are built into the demo: generate 
 an image or change the color of the app.
 
-### Imagen
-Generate images directly from text prompts, showcasing generative AI in visual 
-content creation.
-- **Enter a prompt:** Type a description of the image you want to generate into 
-the text input field.
-- **Generate images:** Tap the "Generate" button to send your prompt to the 
-Imagen model.
-- **View results:** The generated images will appear in the display area. 
-A loading indicator will be shown while the images are being generated.
-
 ### Multimodal Prompt
 Interact with Gemini by asking questions about images, audio, video, or text files, 
 highlighting the model's ability to process diverse inputs.
@@ -71,7 +61,7 @@ to the Gemini model.
 - **View response:** The response from Gemini will appear in the output display 
 area. A loading indicator will be shown while Gemini is processing your request.
 
-### Chat with Function Calling
+### Chat with Nano Banana & Function Calling
 Engage in a continuous conversation with Gemini, where the model maintains 
 conversation history and uses function calling to perform actions or retrieve information.
 - **Switch models:** Use the dropdown menu at the top of the screen to switch 
@@ -94,7 +84,7 @@ All Firebase AI Logic code has been separated from the Flutter UI code to make
 the code easier to read and understand. For each demo, you will find all of the 
 encapsulated Firebase AI Logic code in their respective `firebase_<demo>_service.dart` files. 
 These files can be found in their respective demo directories,  with the exception of 
-the `ImagenService` which is shared across 3 demos: Live API, Chat, and Imagen 
+the `ImageService` which is shared across demos: Live API and Chat,
 so the code is instead located in `lib/shared/firebaseai_imagen_service.dart`.
 
 Check out [this table](https://firebase.google.com/docs/ai-logic/models) for 
