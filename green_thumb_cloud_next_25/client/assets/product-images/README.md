@@ -1,1 +1,0 @@
-The images is this folder have been generated using Gemini 2.0 Flash.
